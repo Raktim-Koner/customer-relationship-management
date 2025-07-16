@@ -1,10 +1,8 @@
-# Updated by rohit 
-
+# Updated by Payal
 # Getting Started with Create React App
-
-
+Hello from Saheli
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+ hello to raktim lead 
 ## Available Scripts
 
 In the project directory, you can run:
