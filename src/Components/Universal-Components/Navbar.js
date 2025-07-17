@@ -1,5 +1,9 @@
 import React from 'react';
-import Logo from '../Navbar Icon/Logo';
+import Logo from '../NavbarIcon/Logo';
+import Notification from '../NavbarIcon/Notification';
+import Usericon from '../NavbarIcon/Usericon';
+
+
 
 const Navbar = () => {
   return (
@@ -8,6 +12,8 @@ const Navbar = () => {
       style={{ background: "linear-gradient(to right, #FDFDFD, #B0E0E6)" }}
     >
       <Logo />
+      <Notification/>
+      <Usericon/>
     </div>
   );
 };
