@@ -11,18 +11,23 @@ import Accounts from "./Pages/Accounts"
 import Report from "./Pages/Report"
 import Service from "./Pages/Service"
 import InnerContainer from "./Components/Universal-Components/InnerContainer";
+import Sidebar from "./Components/Universal-Components/Sidebar";
 
-
+const AppLayout = () => (
+  <>
+    <Navbar />
+    <MainContainer />
+  </>
+);
 function App() {
   const appRouter = createBrowserRouter([
     {
       path:"/",
-      element:(
-      <>
-      <Navbar/>
-      <MainContainer/>
-      </>
-      ),
+      element:<Sidebar/> //here landing page is created
+    },
+    {
+      path:"/",
+      element:<AppLayout/>,
       children:[
 
         {
