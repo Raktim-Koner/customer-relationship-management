@@ -11,7 +11,7 @@ import Accounts from "./Pages/Accounts"
 import Report from "./Pages/Report"
 import Service from "./Pages/Service"
 import InnerContainer from "./Components/Universal-Components/InnerContainer";
-import InnerInnerContainer from "./Components/Universal-Components/InnerInnerContainer";
+
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -24,10 +24,7 @@ function App() {
       </>
       ),
       children:[
-        {
-          path:"/",
-          element:<InnerInnerContainer/>
-        },
+
         {
           path:"/dashboard",
           element: <DashboardPage/>
