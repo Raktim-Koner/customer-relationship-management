@@ -12,6 +12,10 @@ import Report from "./Pages/Report"
 import Service from "./Pages/Service"
 import InnerContainer from "./Components/Universal-Components/InnerContainer";
 import Sidebar from "./Components/Universal-Components/Sidebar";
+import Analytics from "./Subpages/Analytics";
+import Chat from "./Subpages/Chat";
+import Document from "./Subpages/Document";
+import SubMainContainer from "./Components/Universal-Components/SubMainContainer";
 
 const AppLayout = () => (
   <>
@@ -19,6 +23,13 @@ const AppLayout = () => (
     <MainContainer />
   </>
 );
+const AppSubLayout = () => (
+  <>
+    <Navbar />
+    <SubMainContainer/>
+  </>
+);
+
 function App() {
   const appRouter = createBrowserRouter([
     {
@@ -57,6 +68,24 @@ function App() {
         {
           path:"/services",
           element:<Service/>
+        },
+      ]
+    },
+    {
+      path:"/",
+      element:<AppSubLayout/>,
+      children:[
+        {
+          path:"/report/analytics",
+          element: <Analytics/>
+        },
+        {
+          path:"/services/chat",
+          element: <Chat/>
+        },
+        {
+          path:"/services/documents",
+          element: <Document/>
         },
       ]
     }
