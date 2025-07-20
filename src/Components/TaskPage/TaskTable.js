@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Projecttable = () => {
+const TaskTable = () => {
   return (
     <div className="mt-16 rounded-lg border border-gray-300 border-b-0 h-64 overflow-y-auto">
 
@@ -17,7 +17,7 @@ const Projecttable = () => {
           </thead>
           <tbody className="bg-cyan-50">
             <tr>
-              <td className="px-4 py-2 border border-r-black"></td>
+              <td className="px-4 py-2 border border-r-black">001</td>
               <td className="px-4 py-2 border border-r-black"></td>
               <td className="px-4 py-2 border border-r-black"></td>
               <td className="px-4 py-2 border border-r-black">John Doe</td>
@@ -85,4 +85,4 @@ const Projecttable = () => {
   )
 }
 
-export default Projecttable
+export default TaskTable
