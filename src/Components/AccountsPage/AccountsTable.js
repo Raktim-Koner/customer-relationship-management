@@ -18,9 +18,9 @@ const AccountsTable = () => {
           </thead>
           <tbody className="bg-cyan-50">
             <tr>
-              <td className="px-4 py-2 border border-r-black">101</td>
-              <td className="px-4 py-2 border border-r-black"></td>
-              <td className="px-4 py-2 border border-r-black"></td>
+              <td className="px-4 py-2 border border-r-black">A101</td>
+              <td className="px-4 py-2 border border-r-black">Infosys Ltd.</td>
+              <td className="px-4 py-2 border border-r-black">IT Services</td>
               <td className="px-4 py-2 border border-r-black">Pune</td>
               <td className="px-4 py-2 border border-r-black">Done</td>
               
@@ -28,56 +28,7 @@ const AccountsTable = () => {
           </tbody>
 
           {/* //here */}
-          {/* <tbody className="bg-cyan-100">
-            <tr>
-              <td className="px-4 py-2 border border-r-black">001</td>
-              <td className="px-4 py-2 border border-r-black">P-1001</td>
-              <td className="px-4 py-2 border border-r-black">Website Redesign</td>
-              <td className="px-4 py-2 border border-r-black">John Doe</td>
-              <td className="px-4 py-2 border border-r-black">In Progress</td>
-              
-            </tr>
-          </tbody>
-          <tbody className="bg-cyan-50">
-            <tr>
-              <td className="px-4 py-2 border border-r-black">001</td>
-              <td className="px-4 py-2 border border-r-black">P-1001</td>
-              <td className="px-4 py-2 border border-r-black">Website Redesign</td>
-              <td className="px-4 py-2 border border-r-black">John Doe</td>
-              <td className="px-4 py-2 border border-r-black">In Progress</td>
-              
-            </tr>
-          </tbody>
-          <tbody className="bg-cyan-100">
-            <tr>
-              <td className="px-4 py-2 border border-r-black">001</td>
-              <td className="px-4 py-2 border border-r-black">P-1001</td>
-              <td className="px-4 py-2 border border-r-black">Website Redesign</td>
-              <td className="px-4 py-2 border border-r-black">John Doe</td>
-              <td className="px-4 py-2 border border-r-black">In Progress</td>
-              
-            </tr>
-          </tbody>
-          <tbody className="bg-cyan-50">
-            <tr>
-              <td className="px-4 py-2 border border-r-black">001</td>
-              <td className="px-4 py-2 border border-r-black">P-1001</td>
-              <td className="px-4 py-2 border border-r-black">Website Redesign</td>
-              <td className="px-4 py-2 border border-r-black">John Doe</td>
-              <td className="px-4 py-2 border border-r-black">In Progress</td>
-             
-            </tr>
-          </tbody>
-          <tbody className="bg-cyan-100">
-            <tr>
-              <td className="px-4 py-2 border border-r-black">001</td>
-              <td className="px-4 py-2 border border-r-black">P-1001</td>
-              <td className="px-4 py-2 border border-r-black">Website Redesign</td>
-              <td className="px-4 py-2 border border-r-black">John Doe</td>
-              <td className="px-4 py-2 border border-r-black">In Progress</td>
-              
-            </tr>
-          </tbody> */}
+          
           {/* //here */}
 
         </table>
