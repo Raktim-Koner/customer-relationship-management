@@ -8,7 +8,7 @@ const Projecttable = () => {
           <thead className="bg-cyan-100 sticky top-0 z-10">
             <tr>
               <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Deal ID</th>
-              <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Project Id</th>
+              <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Project ID</th>
               <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Project Name</th>
               <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Assign To</th>
               <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Status</th>
@@ -17,9 +17,9 @@ const Projecttable = () => {
           </thead>
           <tbody className="bg-cyan-50">
             <tr>
-              <td className="px-4 py-2 border border-r-black">001</td>
-              <td className="px-4 py-2 border border-r-black">P-1001</td>
-              <td className="px-4 py-2 border border-r-black">Website Redesign</td>
+              <td className="px-4 py-2 border border-r-black">101</td>
+              <td className="px-4 py-2 border border-r-black">PR101</td>
+              <td className="px-4 py-2 border border-r-black">CRM</td>
               <td className="px-4 py-2 border border-r-black">John Doe</td>
               <td className="px-4 py-2 border border-r-black">In Progress</td>
               <td className="px-4 py-2 border">2025-08-10</td>
