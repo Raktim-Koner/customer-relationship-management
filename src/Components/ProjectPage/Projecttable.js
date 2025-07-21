@@ -19,7 +19,7 @@ const Projecttable = () => {
             <tr>
               <td className="px-4 py-2 border border-r-black">101</td>
               <td className="px-4 py-2 border border-r-black">PR101</td>
-              <td className="px-4 py-2 border border-r-black">CRM</td>
+              <td className="px-4 py-2 border border-r-black">Website Redesign</td>
               <td className="px-4 py-2 border border-r-black">John Doe</td>
               <td className="px-4 py-2 border border-r-black">In Progress</td>
               <td className="px-4 py-2 border">2025-08-10</td>
@@ -27,26 +27,6 @@ const Projecttable = () => {
           </tbody>
 
           {/* //here */}
-          {/* <tbody className="bg-cyan-100">
-            <tr>
-              <td className="px-4 py-2 border border-r-black">001</td>
-              <td className="px-4 py-2 border border-r-black">P-1001</td>
-              <td className="px-4 py-2 border border-r-black">Website Redesign</td>
-              <td className="px-4 py-2 border border-r-black">John Doe</td>
-              <td className="px-4 py-2 border border-r-black">In Progress</td>
-              <td className="px-4 py-2 border">2025-08-10</td>
-            </tr>
-          </tbody>
-          <tbody className="bg-cyan-50">
-            <tr>
-              <td className="px-4 py-2 border border-r-black">001</td>
-              <td className="px-4 py-2 border border-r-black">P-1001</td>
-              <td className="px-4 py-2 border border-r-black">Website Redesign</td>
-              <td className="px-4 py-2 border border-r-black">John Doe</td>
-              <td className="px-4 py-2 border border-r-black">In Progress</td>
-              <td className="px-4 py-2 border">2025-08-10</td>
-            </tr>
-          </tbody>
           <tbody className="bg-cyan-100">
             <tr>
               <td className="px-4 py-2 border border-r-black">001</td>
@@ -76,7 +56,27 @@ const Projecttable = () => {
               <td className="px-4 py-2 border border-r-black">In Progress</td>
               <td className="px-4 py-2 border">2025-08-10</td>
             </tr>
-          </tbody> */}
+          </tbody>
+          <tbody className="bg-cyan-50">
+            <tr>
+              <td className="px-4 py-2 border border-r-black">001</td>
+              <td className="px-4 py-2 border border-r-black">P-1001</td>
+              <td className="px-4 py-2 border border-r-black">Website Redesign</td>
+              <td className="px-4 py-2 border border-r-black">John Doe</td>
+              <td className="px-4 py-2 border border-r-black">In Progress</td>
+              <td className="px-4 py-2 border">2025-08-10</td>
+            </tr>
+          </tbody>
+          <tbody className="bg-cyan-100">
+            <tr>
+              <td className="px-4 py-2 border border-r-black">001</td>
+              <td className="px-4 py-2 border border-r-black">P-1001</td>
+              <td className="px-4 py-2 border border-r-black">Website Redesign</td>
+              <td className="px-4 py-2 border border-r-black">John Doe</td>
+              <td className="px-4 py-2 border border-r-black">In Progress</td>
+              <td className="px-4 py-2 border">2025-08-10</td>
+            </tr>
+          </tbody>
           {/* //here */}
 
         </table>
