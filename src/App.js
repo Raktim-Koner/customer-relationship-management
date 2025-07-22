@@ -16,6 +16,7 @@ import Analytics from "./Subpages/Analytics";
 import Chat from "./Subpages/Chat";
 import Document from "./Subpages/Document";
 import SubMainContainer from "./Components/Universal-Components/SubMainContainer";
+import Landing from "./Pages/Landing";
 
 const AppLayout = () => (
   <>
@@ -34,7 +35,7 @@ function App() {
   const appRouter = createBrowserRouter([
     {
       path:"/",
-      element:<Sidebar/> //here landing page is created
+      element:<Landing/>,
     },
     {
       path:"/",
