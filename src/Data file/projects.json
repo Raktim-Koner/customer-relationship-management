@@ -1,0 +1,50 @@
+[
+  {
+    "dealId": "101",
+    "projectId": "PR101",
+    "projectName": "Website Redesign",
+    "assignTo": "John Doe",
+    "status": "In Progress",
+    "dueDate": "2025-08-10"
+  },
+  {
+    "dealId": "001",
+    "projectId": "P-1001",
+    "projectName": "Website Redesign",
+    "assignTo": "John Doe",
+    "status": "In Progress",
+    "dueDate": "2025-08-10"
+  },
+  {
+    "dealId": "001",
+    "projectId": "P-1001",
+    "projectName": "Website Redesign",
+    "assignTo": "John Doe",
+    "status": "In Progress",
+    "dueDate": "2025-08-10"
+  },
+  {
+    "dealId": "001",
+    "projectId": "P-1001",
+    "projectName": "Website Redesign",
+    "assignTo": "John Doe",
+    "status": "In Progress",
+    "dueDate": "2025-08-10"
+  },
+  {
+    "dealId": "001",
+    "projectId": "P-1001",
+    "projectName": "Website Redesign",
+    "assignTo": "John Doe",
+    "status": "In Progress",
+    "dueDate": "2025-08-10"
+  },
+  {
+    "dealId": "001",
+    "projectId": "P-1001",
+    "projectName": "Website Redesign",
+    "assignTo": "John Doe",
+    "status": "In Progress",
+    "dueDate": "2025-08-10"
+  }
+]

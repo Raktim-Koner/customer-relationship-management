@@ -1,0 +1,23 @@
+[
+  {
+    "accountId": "A205",
+    "company": "BlueNova Healthcare",
+    "industryName": "Healthcare",
+    "location": "Kolkata",
+    "status": "In Progress"
+  },
+   {
+    "accountId": "A204",
+    "company": "Skyline Infrastructure",
+    "industryName": "Construction",
+    "location": "Delhi",
+    "status": "Active"
+  },
+  {
+    "accountId": "A103",
+    "company": "Reliance Industries",
+    "industryName": "Oil & Gas",
+    "location": "Delhi",
+    "status": "In Progress"
+  }
+]

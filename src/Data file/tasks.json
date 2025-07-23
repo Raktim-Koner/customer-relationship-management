@@ -1,0 +1,26 @@
+[
+  {
+    "taskId": "T101",
+    "taskName": "Fix login bug",
+    "assignTo": "John Doe",
+    "priority": "Medium",
+    "status": "In Progress",
+    "dueDate": "2025-08-10"
+  },
+  {
+    "taskId": "T102",
+    "taskName": "Update dashboard UI",
+    "assignTo": "Jane Smith",
+    "priority": "High",
+    "status": "Pending",
+    "dueDate": "2025-08-15"
+  },
+  {
+    "taskId": "T103",
+    "taskName": "Integrate payment gateway",
+    "assignTo": "Alice Brown",
+    "priority": "Low",
+    "status": "Completed",
+    "dueDate": "2025-08-20"
+  }
+]
