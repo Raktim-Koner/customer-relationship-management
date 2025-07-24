@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const LandingButton = () => {
     
   return (
-    <div > 
+    <div className=''> 
         <Link to="/dashboard">
           <button 
            style={{ backgroundColor: "#022B66" }}
