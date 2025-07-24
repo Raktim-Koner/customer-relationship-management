@@ -1,27 +1,33 @@
 import React from 'react'
-import LandingLogo from '../Components/LandingPage/LandingLogo';
-import LandingSocialmedia from '../Components/LandingPage/LandingSocialmedia';
-import LandingTagline from '../Components/LandingPage/LandingTagline';
-import LandingHandimage from '../Components/LandingPage/LandingHandimage';
-import LandingButton from '../Components/LandingPage/LandingButton';
+import LandingBg from "../Assets/LandingBg.png"
+import LandingLogo from "../Components/LandingPage/LandingLogo"
+import LandingSocialmedia from "../Components/LandingPage/LandingSocialmedia"
+import LandingTagline from "../Components/LandingPage/LandingTagline"
+import LandingButton from "../Components/LandingPage/LandingButton"
+import LandingHandimage from '../Components/LandingPage/LandingHandimage'
+
 
 const Landing = () => {
   return (
-    <div
-     className="h-[45.3rem] "
-      style={{ background: 'linear-gradient(to bottom, #FDFDFD, #B1E0E6)' }}>
+    <div className="h-full bg-no-repeat bg-cover bg-center"
+       style={{backgroundImage: `url(${LandingBg})` }}>
 
-      <div className="flex mt-3">
-        <LandingLogo/> 
-        <LandingSocialmedia/> 
-      </div> 
-      <div className='flex mt-4 ml-4'>
-      <LandingTagline/>
-      <LandingHandimage/>
+       <div className='flex'>
+           <LandingLogo/>
+           <LandingSocialmedia/>
       </div>
+      <div  class="flex ">
+          <div className='px-6 -mt-[1rem] ml-6'>
+             <LandingTagline/>
+              <div className='ml-[17rem] mt-[5rem]'> 
+                <LandingButton/> 
+             </div>
 
-      <LandingButton/>
+           </div> 
+             <LandingHandimage/>
+      </div>
    </div>
   )
 }
-export default Landing;
+
+export default Landing
