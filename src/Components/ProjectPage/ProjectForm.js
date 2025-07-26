@@ -20,7 +20,7 @@ const ProjectFotm = ({ onSubmit, onClose }) => {
   }
 
   return (
-    <div className="bg-white border border-gray-300 rounded-xl p-6 w-[40rem] mx-auto mt-10 shadow-lg font-sans">
+    <div className="bg-white border border-gray-300 rounded-xl p-6 w-[40rem] mx-auto mt-10 shadow-lg font-sans">     
       <h2 className="text-2xl font-bold mb-4 text-blue-900">Add New Project</h2>
       <form onSubmit={handleSubmit}>
         {["dealId", "projectId", "projectName", "assignTo", "status", "dueDate"].map((field) => (
@@ -47,7 +47,7 @@ const ProjectFotm = ({ onSubmit, onClose }) => {
           </button>
         </div>
       </form>
-    </div>
+    </div>   
   )
 }
 
