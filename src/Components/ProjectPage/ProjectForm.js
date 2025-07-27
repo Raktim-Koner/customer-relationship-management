@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ProjectForm = ({ onSubmit, onClose }) => {
+const ProjectFotm = ({ onSubmit, onClose }) => {
   const [formData, setFormData] = useState({
     dealId: '',
     projectId: '',
@@ -51,4 +51,4 @@ const ProjectForm = ({ onSubmit, onClose }) => {
   )
 }
 
-export default ProjectForm
+export default ProjectFotm
