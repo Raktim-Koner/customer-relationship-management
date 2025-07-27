@@ -3,7 +3,7 @@ import Projectsearch from '../Components/ProjectPage/Projectsearch';
 import Projectfilter from '../Components/ProjectPage/Projectfilter';
 import Projecttable from '../Components/ProjectPage/Projecttable';
 import ProjectName from '../Components/ProjectPage/ProjectName';
-import ProjectForm from '../Components/ProjectPage/ProjectForm';
+import ProjectFotm from '../Components/ProjectPage/ProjectForm';
 
 const Project = () => {
   const [isModelFlag, setIsModelFlag] = useState(false);
@@ -33,7 +33,7 @@ const Project = () => {
 
       {isModelFlag && (
   <div className="fixed inset-0 bg-black bg-opacity-40 z-50">
-    <ProjectForm onSubmit={handleAddProject} onClose={handleFormClose} />
+    <ProjectFotm onSubmit={handleAddProject} onClose={handleFormClose} />
   </div>
 )}
 
