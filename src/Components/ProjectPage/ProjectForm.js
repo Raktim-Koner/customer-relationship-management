@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ProjectFotm = ({ onSubmit, onClose }) => {
+const ProjectForm = ({ onSubmit, onClose }) => {
   const [formData, setFormData] = useState({
     dealId: '',
     projectId: '',
@@ -20,7 +20,15 @@ const ProjectFotm = ({ onSubmit, onClose }) => {
   }
 
   return (
-    <div className="bg-white border border-gray-300 rounded-xl p-6 w-[40rem] mx-auto mt-10 shadow-lg font-sans">     
+    <div className="relative bg-white border border-gray-300 rounded-xl p-6 w-[40rem] mx-auto mt-10 shadow-lg font-sans">
+      {/* Cross Button */}
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 text-gray-600 hover:text-black text-xl font-bold focus:outline-none"
+      >
+        ×
+      </button>
+
       <h2 className="text-2xl font-bold mb-4 text-blue-900">Add New Project</h2>
       <form onSubmit={handleSubmit}>
         {["dealId", "projectId", "projectName", "assignTo", "status", "dueDate"].map((field) => (
@@ -47,8 +55,8 @@ const ProjectFotm = ({ onSubmit, onClose }) => {
           </button>
         </div>
       </form>
-    </div>   
+    </div>
   )
 }
 
-export default ProjectFotm
+export default ProjectForm
