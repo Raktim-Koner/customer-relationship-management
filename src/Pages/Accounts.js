@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import AccountsName from '../Components/AccountsPage/AccountsName';
 import AccountsSearch from '../Components/AccountsPage/AccountsSearch';
 import AccountsFilter from '../Components/AccountsPage/AccountsFilter';
-import AccountsEntry from '../Components/AccountsPage/AccountsEntry';
 import AccountsTable from '../Components/AccountsPage/AccountsTable';
 import AccountsForm from '../Components/AccountsPage/AccountsForm';
 const Accounts=()=>{
