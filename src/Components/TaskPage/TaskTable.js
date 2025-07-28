@@ -7,12 +7,12 @@ const TaskTable = () => {
       <table className="min-w-full text-center font-sans">
         <thead className="bg-cyan-100 sticky top-0 z-10">
           <tr>
-            <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Task ID</th>
-            <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Task Name</th>
-            <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Assign To</th>
-            <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Priority</th>
-            <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Status</th>
-            <th className="px-4 py-3 text-blue-900 font-bold border">Due Date</th>
+            <th className="px-4 py-3 text-blue-950 font-bold border border-black border-l-0">Task ID</th>
+            <th className="px-4 py-3 text-blue-950 font-bold border border-black">Task Name</th>
+            <th className="px-4 py-3 text-blue-950 font-bold border border-black">Assign To</th>
+            <th className="px-4 py-3 text-blue-950 font-bold border border-black">Priority</th>
+            <th className="px-4 py-3 text-blue-950 font-bold border border-black">Status</th>
+            <th className="px-4 py-3 text-blue-950 font-bold border border-black">Due Date</th>
           </tr>
         </thead>
         <tbody>
@@ -21,12 +21,12 @@ const TaskTable = () => {
               key={index}
               className={index % 2 === 0 ? 'bg-cyan-50' : 'bg-cyan-100'}
             >
-              <td className="px-4 py-2 border border-r-black">{task.taskId}</td>
-              <td className="px-4 py-2 border border-r-black">{task.taskName}</td>
-              <td className="px-4 py-2 border border-r-black">{task.assignTo}</td>
-              <td className="px-4 py-2 border border-r-black">{task.priority}</td>
-              <td className="px-4 py-2 border border-r-black">{task.status}</td>
-              <td className="px-4 py-2 border">{task.dueDate}</td>
+              <td className="px-4 py-2 border border-black border-l-0">{task.taskId}</td>
+              <td className="px-4 py-2 border border-black">{task.taskName}</td>
+              <td className="px-4 py-2 border border-black">{task.assignTo}</td>
+              <td className="px-4 py-2 border border-black">{task.priority}</td>
+              <td className="px-4 py-2 border border-black">{task.status}</td>
+              <td className="px-4 py-2 border border-black">{task.dueDate}</td>
             </tr>
           ))}
         </tbody>
