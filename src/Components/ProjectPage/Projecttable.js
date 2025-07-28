@@ -13,7 +13,7 @@ const Projecttable = () => {
             <th className="px-4 py-3 text-blue-950 font-bold border border-black">Project Name</th>
             <th className="px-4 py-3 text-blue-950 font-bold border border-black">Assign To</th>
             <th className="px-4 py-3 text-blue-950 font-bold border border-black">Status</th>
-            <th className="px-4 py-3 text-blue-950 font-bold border border-black">Due Date</th>
+            <th className="px-4 py-3 text-blue-950 font-bold border border-black border-r-0">Due Date</th>
           </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@ const Projecttable = () => {
               <td className="px-4 py-2 border border-black">{project.projectName}</td>
               <td className="px-4 py-2 border border-black">{project.assignTo}</td>
               <td className="px-4 py-2 border border-black">{project.status}</td>
-              <td className="px-4 py-2 border border-black">{project.dueDate}</td>
+              <td className="px-4 py-2 border border-black border-r-0">{project.dueDate}</td>
             </tr>
           ))}
         </tbody>
