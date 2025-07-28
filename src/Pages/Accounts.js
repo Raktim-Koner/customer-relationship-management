@@ -21,7 +21,7 @@ const Accounts=()=>{
             <div className='flex ml-4 mt-8'>
                 <AccountsSearch/>
                 <AccountsFilter/>
-            <button className="w-32 px-4 py-2 ml-3 bg-blue-900 text-white rounded-full  font-sans font-bold         items-center "
+            <button className="w-32 px-4 py-2 ml-3 bg-blue-950 text-white rounded-xl  font-sans font-bold         items-center "//chnaged the button color and design
             onClick={() => setIsModelFlag(true)}>
                 + New Entry
             </button>
