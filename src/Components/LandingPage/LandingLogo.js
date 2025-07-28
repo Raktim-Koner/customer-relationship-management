@@ -1,12 +1,16 @@
-import React from 'react'
-import Logo from "../../Assets/LOGO.png"
+import React from 'react';
+import Logo from "../../Assets/LOGO.png";
 
 const LandingLogo = () => {
   return (
-    <div>
-      <img src={Logo} alt="Logo" className="h-12 w-25 ml-[1rem] py-2" />
+    <div className="flex items-center">
+      <img 
+        src={Logo} 
+        alt="Logo" 
+        className="h-12 w-auto sm:h-14 md:h-16"
+      />
     </div>
-  )
-}
+  );
+};
 
 export default LandingLogo;
