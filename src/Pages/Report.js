@@ -24,7 +24,7 @@ const Report = () => {
         <ReportSearch />
         <ReportFilter />
         <button
-          className="w-32 px-4 py-2 ml-3 bg-blue-900 text-white rounded-full font-sans font-bold"
+          className="w-32 px-4 py-2 ml-3 bg-blue-950 text-white rounded-xl font-sans font-bold"
           onClick={() => setIsModalOpen(true)}
         >
           + New Entry

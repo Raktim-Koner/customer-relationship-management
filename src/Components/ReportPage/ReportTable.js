@@ -8,11 +8,11 @@ const ReportTable = () => {
         <table className="min-w-full text-center font-sans">
           <thead className="bg-cyan-100 sticky top-0 z-10">
             <tr>
-              <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">SL NO.</th>
-              <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Project ID</th>
-              <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">Project Name</th>
-              <th className="px-4 py-3 text-blue-900 font-bold border border-r-black">View/Download</th>
-              <th className="px-4 py-3 text-blue-900 font-bold border">Remove</th>
+              <th className="px-4 py-3 text-blue-950 font-bold border border-black border-l-0">SL NO.</th>
+              <th className="px-4 py-3 text-blue-950 font-bold border border-black">Project ID</th>
+              <th className="px-4 py-3 text-blue-950 font-bold border border-black">Project Name</th>
+              <th className="px-4 py-3 text-blue-950 font-bold border border-black">View/Download</th>
+              <th className="px-4 py-3 text-blue-950 font-bold border border-black">Remove</th>
             </tr>
           </thead>
           <tbody>
@@ -21,11 +21,11 @@ const ReportTable = () => {
                 key={index}
                 className={index % 2 === 0 ? 'bg-cyan-50' : 'bg-cyan-100'}
               >
-                <td className="px-4 py-2 border border-r-black">{report.slNo}</td>
-                <td className="px-4 py-2 border border-r-black">{report.projectId}</td>
-                <td className="px-4 py-2 border border-r-black">{report.projectName}</td>
-                <td className="px-4 py-2 border border-r-black">{report.viewDownload}</td>
-                <td className="px-4 py-2 border">{report.remove}</td>
+                <td className="px-4 py-2 border border-black border-l-0">{report.slNo}</td>
+                <td className="px-4 py-2 border border-black">{report.projectId}</td>
+                <td className="px-4 py-2 border border-black">{report.projectName}</td>
+                <td className="px-4 py-2 border border-black">{report.viewDownload}</td>
+                <td className="px-4 py-2 border border-black" >{report.remove}</td>
               </tr>
             ))}
           </tbody>
