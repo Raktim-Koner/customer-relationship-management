@@ -1,11 +1,14 @@
-import React from 'react'
-import Image from "../../Assets/HandImage.png"
+import React from 'react';
+import Image from "../../Assets/HandImage.png";
+
 const LandingHandimage = () => {
   return (
-    <div>
-       <img src={Image} alt="Handimage" className="h-[30.5rem] w-[45rem] -mt-[-11rem] ml-[-2rem]"/>
-    </div>
-  )
-}
+    <img
+      src={Image}
+      alt="Handimage"
+      className="max-w-full h-auto lg:h-[38.46rem] lg:w-[42rem]"
+    />
+  );
+};
 
 export default LandingHandimage;
