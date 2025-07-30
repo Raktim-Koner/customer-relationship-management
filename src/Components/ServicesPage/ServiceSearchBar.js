@@ -1,8 +1,17 @@
 import React from 'react'
+import Searchicon from "../../Assets/Searchicon.png"
 
 const ServiceSearchBar = () => {
   return (
-    <div><input className=" ml-9 mt-6 w-[30rem] border border-gray-400 rounded-tl-full rounded-full py-2 pl-1 font-sans" type="text" placeholder="🔍 Describe your issue or Search your answer" />
+    <div className="flex items-center w-[30rem] border border-black rounded-full bg-[#deeded] px-4 py-2 ml-6 mt-2 font-sans">
+      <span className="text-black mr-2">
+        <img src={Searchicon} alt="Search" className="h-5 w-5" />
+      </span>
+      <input 
+        type="text"
+        placeholder="Describe Your Issue or Search Your Answer "
+        className="outline-none bg-transparent placeholder-gray-500 w-[26rem]"
+      />
     </div>
   )
 }
