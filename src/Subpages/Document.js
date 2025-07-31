@@ -1,9 +1,15 @@
 import React from 'react'
+import DocumentHead from '../Components/DocumentPage/DocumentHead'
+import DocumentHelpLogo from '../Components/DocumentPage/DocumentHelpLogo'
+import DocumentPopularLogo from '../Components/DocumentPage/DocumentPopularLogo'
 
 const Document = () => {
   return (
-    <div>
-      <h1>Document</h1>
+    <div className='flex'>
+      <DocumentHead/>
+      <DocumentHelpLogo/>
+      <DocumentPopularLogo/>
+
     </div>
   )
 }
