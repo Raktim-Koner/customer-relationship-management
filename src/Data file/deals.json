@@ -1,0 +1,29 @@
+[
+  {
+    "dealId": "D001",
+    "dealName": "Website Development",
+    "company": "Tech Solutions Pvt Ltd",
+    "amount": "$12,000",
+    "status": "New",
+    "action": "Update Status",
+    "closeDate": "2025-08-15"
+  },
+  {
+    "dealId": "D002",
+    "dealName": "Mobile App Launch",
+    "company": "Future Innovations Ltd",
+    "amount": "$20,500",
+    "status": "Running",
+    "action": "No Action",
+    "closeDate": "2025-09-10"
+  },
+  {
+    "dealId": "D003",
+    "dealName": "Cloud Migration",
+    "company": "SkyNet Technologies",
+    "amount": "$35,000",
+    "status": "Reject",
+    "action": "Update Status",
+    "closeDate": "2025-07-25"
+  }
+]

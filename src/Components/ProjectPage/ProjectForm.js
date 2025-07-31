@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+// import data from '../../Data file/projects.json'
+// import * as fs from "fs";
 
 const ProjectForm = ({ onSubmit, onClose }) => {
   const [formData, setFormData] = useState({
@@ -17,7 +19,15 @@ const ProjectForm = ({ onSubmit, onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     onSubmit(formData)
+    console.log(formData)
   }
+
+// const updatedJSON = [...data, formData]
+// // console.log(updatedJSON)
+
+// fs.writeFile(data, JSON.stringify(updatedJSON), (err) => {
+//     if (err) console.log('Error writing file:', err)
+// })
 
   return (
     <div className="relative bg-white border border-gray-300 rounded-xl p-6 w-[40rem] mx-auto mt-10 shadow-lg font-sans">

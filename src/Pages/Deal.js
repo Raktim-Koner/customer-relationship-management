@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DealName from '../Components/DealPage/DealName'
 import DealSearch from '../Components/DealPage/DealSearch'
 import DealFilter from '../Components/DealPage/DealFilter'
+import DealTable from '../Components/DealPage/DealTable'
 
 const Deal = () => {
   const [isModelFlag, setIsModelFlag] = useState(false);
@@ -25,6 +26,7 @@ const Deal = () => {
         
 
       </div>
+      <DealTable/>
     </div>
   )
 }
