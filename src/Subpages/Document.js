@@ -1,16 +1,15 @@
 import React from 'react'
 import DocumentHead from '../Components/DocumentPage/DocumentHead'
 import DocumentHelpLogo from '../Components/DocumentPage/DocumentHelpLogo'
-import DocumentPopularLogo from '../Components/DocumentPage/DocumentPopularLogo'
+import DocumentPopularTopics from '../Components/DocumentPage/DocumentPopularTopics'
 
 const Document = () => {
   return (
     <div className='flex'>
       <DocumentHead/>
       <DocumentHelpLogo/>
-      <DocumentPopularLogo/>
-
-    </div>
+      <DocumentPopularTopics/>
+   </div>
   )
 }
 
