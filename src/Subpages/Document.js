@@ -1,10 +1,15 @@
 import React from 'react'
+import DocumentHead from '../Components/DocumentPage/DocumentHead'
+import DocumentHelpLogo from '../Components/DocumentPage/DocumentHelpLogo'
+import DocumentPopularTopics from '../Components/DocumentPage/DocumentPopularTopics'
 
 const Document = () => {
   return (
-    <div>
-      <h1>Document</h1>
-    </div>
+    <div className='flex'>
+      <DocumentHead/>
+      <DocumentHelpLogo/>
+      <DocumentPopularTopics/>
+   </div>
   )
 }
 
