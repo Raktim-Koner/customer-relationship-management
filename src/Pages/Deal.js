@@ -3,6 +3,7 @@ import DealName from '../Components/DealPage/DealName'
 import DealSearch from '../Components/DealPage/DealSearch'
 import DealFilter from '../Components/DealPage/DealFilter'
 import DealTable from '../Components/DealPage/DealTable'
+import DealForm from '../Components/DealPage/DealForm';
 
 const Deal = () => {
   const [isModelFlag, setIsModelFlag] = useState(false);
@@ -10,6 +11,9 @@ const Deal = () => {
     const handleAddProject = (formData) => {
       console.log("New Task Data: ", formData);
       setIsModelFlag(false);
+    };
+    const handleFormClose = () =>{
+        setIsModelFlag(false);
     };
   return (
     <div>
@@ -26,6 +30,11 @@ const Deal = () => {
         
 
       </div>
+      {isModelFlag && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 z-50">
+        <DealForm onSubmit={handleAddProject} onClose={handleFormClose} />
+        </div>
+    )}
       <DealTable/>
     </div>
   )
