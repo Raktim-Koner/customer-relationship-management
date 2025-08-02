@@ -32,7 +32,7 @@ const DealForm = ({ onSubmit, onClose }) => {
           ×
         </button>
 
-        <h2 className="text-xl font-bold mb-3 text-blue-900 text-center">Add New Deal</h2>
+        <h2 className="text-2xl font-bold mb-4 text-blue-900">Add New Deal</h2>
 
         <form onSubmit={handleSubmit}>
           {["dealId", "dealName", "company", "amount", "status", "action", "closeDate"].map((field) => (
