@@ -7,24 +7,21 @@ import ProjectForm from '../Components/ProjectPage/ProjectForm';
 
 const Project = () => {
   const [isModelFlag, setIsModelFlag] = useState(false);
+  const [refreshFlag, setRefreshFlag] = useState(false);
 
-  const handleAddProject = (formData) => {
-    console.log("New Project Data: ", formData);
-    setIsModelFlag(false);
-  };
-
-  const handleFormClose = () => {
-    setIsModelFlag(false); 
+  const handleProjectAdded = () => {
+    setRefreshFlag(!refreshFlag); // toggle refresh
+    setIsModelFlag(false);        // close modal
   };
 
   return (
     <div>
-      <ProjectName/>
+      <ProjectName />
       <div className='flex ml-4 mt-8'>
         <Projectsearch />
         <Projectfilter />
         <button
-          className="w-32 px-4 py-2 ml-3 bg-blue-950 text-white rounded-xl font-sans font-bold"  // change the button color and design 
+          className="w-32 px-4 py-2 ml-3 bg-blue-950 text-white rounded-xl font-sans font-bold"
           onClick={() => setIsModelFlag(true)}
         >
           + New Entry
@@ -32,13 +29,15 @@ const Project = () => {
       </div>
 
       {isModelFlag && (
-  <div className="fixed inset-0 bg-black bg-opacity-40 z-50">
-    <ProjectForm onSubmit={handleAddProject} onClose={handleFormClose} />
-  </div>
-)}
+        <div className="fixed inset-0 bg-black bg-opacity-40 z-50">
+          <ProjectForm
+            onClose={() => setIsModelFlag(false)}
+            onProjectAdded={handleProjectAdded}
+          />
+        </div>
+      )}
 
-
-      <Projecttable />
+      <Projecttable refreshFlag={refreshFlag} />
     </div>
   );
 };
