@@ -7,13 +7,11 @@ import ReportForm from '../Components/ReportPage/ReportFrom';
 
 const Report = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [refreshFlag, setRefreshFlag] = useState(false);
 
-  const handleAddReport = (formData) => {
-    console.log("New Report Data: ", formData);
-    setIsModalOpen(false);
-  };
-
-  const handleFormClose = () => {
+  // called after form submits
+  const handleDataAdded = () => {
+    setRefreshFlag(!refreshFlag); // toggle to trigger refresh
     setIsModalOpen(false);
   };
 
@@ -33,11 +31,14 @@ const Report = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-40 z-50">
-          <ReportForm onSubmit={handleAddReport} onClose={handleFormClose} /> 
+          <ReportForm 
+            onClose={() => setIsModalOpen(false)} 
+            onSuccess={handleDataAdded} 
+          /> 
         </div>
       )}
 
-      <ReportTable />
+      <ReportTable refreshFlag={refreshFlag} />
     </div>
   );
 };
