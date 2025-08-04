@@ -1,30 +1,26 @@
 import React, { useState } from 'react';
-import TaskName from '../Components/TaskPage/TaskName'
-import TaskSearch from '../Components/TaskPage/TaskSearch'
-import TaskFilter from '../Components/TaskPage/TaskFilter'
-import TaskTable from '../Components/TaskPage/TaskTable'
-import TaskForm from '../Components/TaskPage/TaskForm'
-
+import TaskName from '../Components/TaskPage/TaskName';
+import TaskSearch from '../Components/TaskPage/TaskSearch';
+import TaskFilter from '../Components/TaskPage/TaskFilter';
+import TaskTable from '../Components/TaskPage/TaskTable';
+import TaskForm from '../Components/TaskPage/TaskForm';
 
 const Task = () => {
   const [isModelFlag, setIsModelFlag] = useState(false);
+  const [refreshFlag, setRefreshFlag] = useState(false);
 
-  const handleAddProject = (formData) => {
-    console.log("New Task Data: ", formData);
-    setIsModelFlag(false);
+  const handleTaskAdded = () => {
+    setRefreshFlag(!refreshFlag); // toggle to refresh TaskTable
   };
 
-  const handleFormClose = () => {
-    setIsModelFlag(false); 
-  };
   return (
     <div>
-      <TaskName/>
-      <div className='flex ml-4 mt-8'>
-        <TaskSearch/>
-        <TaskFilter/>
+      <TaskName />
+      <div className="flex ml-4 mt-8">
+        <TaskSearch />
+        <TaskFilter />
         <button
-          className="w-32 px-4 py-2 ml-3 bg-blue-950 text-white rounded-xl font-sans font-bold"  // change the button color and design 
+          className="w-32 px-4 py-2 ml-3 bg-blue-950 text-white rounded-xl font-sans font-bold"
           onClick={() => setIsModelFlag(true)}
         >
           + New Entry
@@ -33,12 +29,16 @@ const Task = () => {
 
       {isModelFlag && (
         <div className="fixed inset-0 bg-black bg-opacity-40 z-50">
-          <TaskForm onSubmit={handleAddProject} onClose={handleFormClose} />
+          <TaskForm
+            onClose={() => setIsModelFlag(false)}
+            onTaskAdded={handleTaskAdded}
+          />
         </div>
       )}
-        <TaskTable/>
-    </div>
-  )
-}
 
-export default Task
+      <TaskTable refreshFlag={refreshFlag} />
+    </div>
+  );
+};
+
+export default Task;
