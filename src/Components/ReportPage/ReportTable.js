@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Tablerow from "../Universal-Components/Tablerow";
 
 const API_URL = "https://api.jsonbin.io/v3/b/6890af3df7e7a370d1f38587";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
@@ -67,9 +68,9 @@ const ReportTable = ({ refreshFlag }) => {
             <tr>
               <td
                 colSpan="5"
-                className="px-4 py-6 text-gray-500 italic bg-cyan-50"
+                className=" text-gray-500"
               >
-                No reports found.
+                <Tablerow/>
               </td>
             </tr>
           ) : (

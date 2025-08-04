@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Tablerow from "../Universal-Components/Tablerow";
 
 const API_URL = "https://api.jsonbin.io/v3/b/688f8e46f7e7a370d1f2ec3c";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
@@ -37,8 +38,8 @@ const Projecttable = ({ refreshFlag }) => {
         <tbody>
           {projects.length === 0 ? (
             <tr>
-              <td colSpan="6" className="py-4 text-gray-500">
-                No projects found.
+              <td colSpan="6" className=" text-gray-500">
+                <Tablerow/>
               </td>
             </tr>
           ) : (

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Tablerow from "../Universal-Components/Tablerow";
 
 const API_URL = "https://api.jsonbin.io/v3/b/6890a96eae596e708fc14add";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
@@ -36,7 +37,7 @@ const AccountsTable = ({ refreshFlag }) => {
         <tbody>
           {accounts.length === 0 ? (
             <tr>
-              <td colSpan="5" className="py-4 text-gray-500">No accounts found.</td>
+              <td colSpan="5" className=" text-gray-500"><Tablerow/></td>
             </tr>
           ) : (
             accounts.map((account, index) => (
