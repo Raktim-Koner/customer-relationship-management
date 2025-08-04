@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-// import data from '../../Data file/projects.json'
-// import * as fs from "fs";
 
-const ProjectForm = ({ onSubmit, onClose }) => {
+const API_URL = "https://api.jsonbin.io/v3/b/688f8e46f7e7a370d1f2ec3c"
+const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG"
+
+const ProjectForm = ({onSubmit, onClose }) => {
   const [formData, setFormData] = useState({
     dealId: '',
     projectId: '',
@@ -16,18 +17,36 @@ const ProjectForm = ({ onSubmit, onClose }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    onSubmit(formData)
-    console.log(formData)
+
+    try {
+      // 1. Fetch old data
+      const res = await fetch(API_URL, {
+        headers: { "X-Master-Key": API_KEY }
+      })
+      const json = await res.json()
+      const oldData = json.record || [] // JSONBin keeps data under "record"
+
+      // 2. Add new data
+      const updatedData = [...oldData, formData]
+
+      // 3. Save back to JSONBin
+      await fetch(API_URL, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Master-Key": API_KEY
+        },
+        body: JSON.stringify(updatedData)
+      })
+
+      console.log("✅ Project added successfully")
+      onClose()
+    } catch (err) {
+      console.error("❌ Error updating projects:", err)
+    }
   }
-
-// const updatedJSON = [...data, formData]
-// // console.log(updatedJSON)
-
-// fs.writeFile(data, JSON.stringify(updatedJSON), (err) => {
-//     if (err) console.log('Error writing file:', err)
-// })
 
   return (
     <div className="relative bg-white border border-gray-300 rounded-xl p-6 w-[40rem] mx-auto mt-10 shadow-lg font-sans">
