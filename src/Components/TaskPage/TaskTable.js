@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Tablerow from "../Universal-Components/Tablerow";
 
 const API_URL = "https://api.jsonbin.io/v3/b/689054c6ae596e708fc11988";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
@@ -39,8 +40,8 @@ const TaskTable = ({ refreshFlag }) => {
         <tbody>
           {tasks.length === 0 ? (
             <tr>
-              <td colSpan="6" className="py-4 text-gray-500">
-                No tasks found.
+              <td colSpan="6" className=" text-gray-500">
+                <Tablerow/>
               </td>
             </tr>
           ) : (
