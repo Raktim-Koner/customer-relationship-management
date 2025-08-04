@@ -3,38 +3,23 @@ import React, { useEffect, useState } from "react";
 const API_URL = "https://api.jsonbin.io/v3/b/688f8e46f7e7a370d1f2ec3c";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
-const ProjectTable = () => {
+const Projecttable = ({ refreshFlag }) => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const res = await fetch(API_URL, {
-          headers: {
-            "X-Master-Key": API_KEY,
-            "Content-Type": "application/json"
-          }
+          headers: { "X-Master-Key": API_KEY }
         });
-
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-
         const json = await res.json();
-        console.log("Fetched JSONBin data:", json);
-
-        if (json.record && Array.isArray(json.record)) {
-          setProjects(json.record);
-        } else {
-          setProjects([]); // fallback
-        }
+        setProjects(json.record || []);
       } catch (err) {
         console.error("Error fetching projects:", err);
       }
     };
-
     fetchProjects();
-  }, []);
+  }, [refreshFlag]); // refetch when refreshFlag toggles
 
   return (
     <div className="mt-16 border border-gray-300 border-b-0 h-64 overflow-y-auto">
@@ -77,4 +62,4 @@ const ProjectTable = () => {
   );
 };
 
-export default ProjectTable;
+export default Projecttable;
