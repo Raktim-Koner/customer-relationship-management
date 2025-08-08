@@ -17,6 +17,7 @@ import Chat from "./Subpages/Chat";
 import Document from "./Subpages/Document";
 import SubMainContainer from "./Components/Universal-Components/SubMainContainer";
 import Landing from "./Pages/Landing";
+import SingnIn from "./Pages/SingnIn";
 
 const AppLayout = () => (
   <>
@@ -88,6 +89,11 @@ function App() {
           path:"/services/documents",
           element: <Document/>
         },
+        {
+          path:"/signin",
+          element: <SingnIn/>
+        },
+
       ]
     }
   ]);
