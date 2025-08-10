@@ -1,12 +1,12 @@
 import React from 'react'
-import SignUpRigtModel from './SignUpRightModel'
 import SignUpLeftModel from './SignUpLeftModel'
+import SignUpRightModel from './SignUpRightModel'
 
 const SignUpMainModel = () => {
   return (
     <div className="flex justify-center mt-28">
-        <SignUpRigtModel/>
         <SignUpLeftModel/>
+        <SignUpRightModel/>
     </div>
   )
 }
