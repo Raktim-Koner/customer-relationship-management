@@ -3,7 +3,7 @@ import SignUpInput from './SignUpInput';
 import SignUpButton from './SignUpButton';
 
 const SignUpRightModel = () => (
-  <div className="p-8 bg-white w-[25rem] h-[30rem] rounded-l-2xl">
+  <div className="p-8 bg-white w-[25rem] h-[30rem] rounded-r-2xl">
     <h2 className="text-4xl font-bold text-gray-800 mb-2 text-center px-5 py-2 space-x-4">
       <span className="text-blue-500 text-6xl font-semibold">C</span>reate{''}
       <span className="text-blue-500 text-6xl font-semibold">A</span>ccount
