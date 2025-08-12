@@ -28,7 +28,7 @@ const DocumentParaThree = () => {
   return (
     <div>
       <DocumentCard>
-        <ul className="list-disc list-inside text-gray-600 space-y-1">
+        <ul className="list-disc list-inside text-black font-serif space-y-1">
           {topics.map((topic, index) => (
             <li key={index}>{topic}</li>
           ))}
