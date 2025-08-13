@@ -31,6 +31,7 @@ const Projecttable = ({ refreshFlag }) => {
             <th className="px-4 py-3 text-blue-950 font-bold border border-black">Project ID</th>
             <th className="px-4 py-3 text-blue-950 font-bold border border-black">Project Name</th>
             <th className="px-4 py-3 text-blue-950 font-bold border border-black">Assign To</th>
+            <th className="px-4 py-3 text-blue-950 font-bold border border-black">Amount</th>
             <th className="px-4 py-3 text-blue-950 font-bold border border-black">Status</th>
             <th className="px-4 py-3 text-blue-950 font-bold border border-black border-r-0">Due Date</th>
           </tr>
@@ -38,7 +39,7 @@ const Projecttable = ({ refreshFlag }) => {
         <tbody>
           {projects.length === 0 ? (
             <tr>
-              <td colSpan="6" className=" text-gray-500">
+              <td colSpan="7" className=" text-gray-500">
                 <Tablerow/>
               </td>
             </tr>
@@ -52,6 +53,7 @@ const Projecttable = ({ refreshFlag }) => {
                 <td className="px-4 py-2 border border-black">{project.projectId}</td>
                 <td className="px-4 py-2 border border-black">{project.projectName}</td>
                 <td className="px-4 py-2 border border-black">{project.assignTo}</td>
+                <td className="px-4 py-2 border border-black">{project.amount}</td>
                 <td className="px-4 py-2 border border-black">{project.status}</td>
                 <td className="px-4 py-2 border border-black border-r-0">{project.dueDate}</td>
               </tr>
