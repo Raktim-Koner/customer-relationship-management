@@ -19,6 +19,7 @@ import SubMainContainer from "./Components/Universal-Components/SubMainContainer
 import Landing from "./Pages/Landing";
 import SingnIn from "./Pages/SingnIn";
 import SignUp from "./Pages/SignUp";
+import SignSubMainContainer from "./Components/Universal-Components/SignSubMainContainer";
 
 const AppLayout = () => (
   <>
@@ -90,6 +91,13 @@ function App() {
           path:"/services/documents",
           element: <Document/>
         },
+        
+      ]
+    },
+    {
+      path:"/",
+      element:<SignSubMainContainer/>,
+      children:[
         {
           path:"/signin",
           element: <SingnIn/>
@@ -98,8 +106,6 @@ function App() {
           path:"/signup",
           element: <SignUp/>
         },
-
-
       ]
     }
   ]);
