@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-const DealForm = ({ onSubmit, onClose }) => {
+const API_URL = "https://api.jsonbin.io/v3/b/689c11e3ae596e708fc8c887";
+const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
+
+const DealForm = ({ onSubmitSuccess, onClose }) => {
   const [formData, setFormData] = useState({
     dealId: '',
     dealName: '',
@@ -9,17 +12,38 @@ const DealForm = ({ onSubmit, onClose }) => {
     status: '',
     action: '',
     closeDate: ''
-  })
+  });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    onSubmit(formData)
-    console.log(formData)
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Fetch existing deals
+      const res = await fetch(API_URL, { headers: { "X-Master-Key": API_KEY } });
+      const data = await res.json();
+      const deals = data.record || [];
+
+      // Add new deal
+      const updatedDeals = [...deals, formData];
+
+      // Save to API
+      await fetch(API_URL, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Master-Key": API_KEY
+        },
+        body: JSON.stringify(updatedDeals)
+      });
+
+      onSubmitSuccess();
+    } catch (err) {
+      console.error("Error adding deal:", err);
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
@@ -69,7 +93,7 @@ const DealForm = ({ onSubmit, onClose }) => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DealForm
+export default DealForm;
