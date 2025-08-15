@@ -30,15 +30,15 @@ const PieChart = () => {
 
         // Define fixed colors
         const colorMap = {
-          "Reject": "rgba(255, 99, 132, 0.6)",   // red
-          "New": "rgba(75, 192, 75, 0.6)",       // green
-          "Running": "rgba(255, 206, 86, 0.6)"   // yellow
+          "Reject": "rgba(221, 0, 44, 0.7)",   // red
+          "New": "rgba(76, 215, 75, 0.7)",       // green
+          "Running": "rgba(255, 224, 89, 0.9)"   // yellow
         };
 
         const borderColorMap = {
-          "Reject": "rgba(255, 99, 132, 5)",
-          "New": "rgba(75, 192, 75, 5)",
-          "Running": "rgba(255, 206, 86, 5)"
+          "Reject": "rgba(221, 0, 44, 0.7)",
+          "New": "rgba(76, 215, 75, .7)",
+          "Running": "rgba(255, 224, 89, 0.9)"
         };
 
         // Prepare chart data
