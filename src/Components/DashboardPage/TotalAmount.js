@@ -43,7 +43,7 @@ const TotalAmount = () => {
       <img src={Dollarsign} className='h-14 pt-[.14rem] px-[.2rem]' alt="Amount Icon" />
       <div>
         <h1 className='font-semibold ml-3'>Total Amount</h1>
-        <p className='ml-3 font-semibold'>
+        <p className='ml-3 font-bold'>
           {formatNumber(totalAmount)}
         </p>
       </div>
