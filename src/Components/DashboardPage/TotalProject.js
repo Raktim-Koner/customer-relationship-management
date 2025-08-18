@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Taskicon from '../../Assets/Taskicon.png';
+import ProjectIcon from '../../Assets/ProjectIcon.png'
+
 
 const API_URL = "https://api.jsonbin.io/v3/b/688f8e46f7e7a370d1f2ec3c";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
@@ -28,10 +29,10 @@ const TotalProject = () => {
 
   return (
     <div className='h-16 w-40 ml-[9rem] border-2 border-black flex items-center'>
-      <img src={Taskicon} className='h-14 pt-[.14rem] pl-[.2rem]' alt="Task Icon" />
+      <img src={ProjectIcon} className='h-14 pt-[.14rem] pl-[.2rem]' alt="Project Icon" />
       <div>
         <h1 className='font-semibold ml-3'>Projects</h1>
-        <p className='ml-3 font-semibold'>{projectCount}</p>
+        <p className='ml-3 font-bold'>{projectCount}</p>
       </div>
     </div>
   );

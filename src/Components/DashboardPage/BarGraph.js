@@ -75,10 +75,9 @@ const BarGraph = () => {
     fetchData();
   }, []);
 
-  if (!chartData) return <p className="ml-10 mt-10">Loading chart...</p>;
-
   return (
-    <div className='h-56 w-[40rem] bg-slate-50 ml-10 mr-9'>
+  <div className="h-56 w-[40rem] bg-slate-50 ml-10 mr-9 flex items-center justify-center">
+    {chartData ? (
       <Bar
         data={chartData}
         options={{
@@ -89,8 +88,12 @@ const BarGraph = () => {
           },
         }}
       />
-    </div>
-  );
+    ) : (
+      <p className="text-gray-500 font-medium">Loading chart...</p>
+    )}
+  </div>
+);
+
 };
 
 export default BarGraph;

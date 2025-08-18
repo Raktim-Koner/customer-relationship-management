@@ -28,10 +28,10 @@ const TotalTask = () => {
 
   return (
     <div className='h-16 w-40 ml-[9rem] border-2 border-black flex items-center'>
-      <img src={Taskicon} className='h-14 pt-[.14rem] pl-[.2rem]' alt="Task Icon" />
+      <img src={Taskicon} className='h-14 pt-[.14rem] pl-[.2rem] ' alt="Task Icon" />
       <div>
         <h1 className='font-semibold ml-3'>Task</h1>
-        <p className='ml-3 font-semibold'>{taskCount}</p>
+        <p className='ml-3 font-bold'>{taskCount}</p>
       </div>
     </div>
   );
