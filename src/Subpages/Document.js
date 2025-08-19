@@ -1,5 +1,4 @@
 import React from 'react';
-import DocumentCard from '../Components/DocumentPage/DocumentCard';
 import DocumentHead from '../Components/DocumentPage/DocumentHead';
 import DocumentHelpLogo from '../Components/DocumentPage/DocumentHelpLogo';
 import DocumentPopularTopics from '../Components/DocumentPage/DocumentPopularTopics';
@@ -10,14 +9,11 @@ import DocumentParaThree from '../Components/DocumentPage/DocumentParaThree';
 const Document = () => {
   return (
     <div className="p-4">
-      {/* Top Section: 3 items in a row */}
-      <div className="flex justify-between items-center mb-4 px-[3rem]">
+      <div className="flex justify-between items-center mb-7 px-[3rem]">
         <DocumentHead />
         <DocumentHelpLogo />
         <DocumentPopularTopics />
       </div>
-
-      {/* Bottom Section: 3 cards in a row */}
       <div className="grid grid-cols-3 gap-6">
         <DocumentParaOne />
         <DocumentParaTwo />
