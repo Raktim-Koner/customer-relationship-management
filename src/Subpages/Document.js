@@ -11,16 +11,16 @@ const Document = () => {
   return (
     <div className="p-4">
       {/* Top Section: 3 items in a row */}
-      <div className="flex  mb-6">
+      <div className="flex justify-between items-center mb-4 px-[3rem]">
         <DocumentHead />
         <DocumentHelpLogo />
         <DocumentPopularTopics />
       </div>
 
       {/* Bottom Section: 3 cards in a row */}
-      <div className="grid grid-cols-3 gap-6 ">
+      <div className="grid grid-cols-3 gap-6">
         <DocumentParaOne />
-        <DocumentParaTwo/>
+        <DocumentParaTwo />
         <DocumentParaThree />
       </div>
     </div>
@@ -28,4 +28,3 @@ const Document = () => {
 };
 
 export default Document;
-
