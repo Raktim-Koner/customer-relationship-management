@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import filterIcon from "../../Assets/filter.png.png";
 
-const Projectfilter = ({ setDateFilter }) => {
+const Projectfilter = ({ setDateFilter, setStatusFilter }) => {
   const [showFilter, setShowFilter] = useState(false);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [status, setStatus] = useState("");  // 🔹 new state
 
   const handleApply = () => {
     setDateFilter({ start: startDate, end: endDate });
+    setStatusFilter(status);   // 🔹 apply status
     setShowFilter(false);
   };
 
   const handleReset = () => {
     setStartDate("");
     setEndDate("");
+    setStatus("");   // 🔹 reset status
     setDateFilter({ start: null, end: null });
+    setStatusFilter("");
     setShowFilter(false);
   };
 
@@ -29,7 +33,6 @@ const Projectfilter = ({ setDateFilter }) => {
 
       {showFilter && (
         <div className="absolute top-10 right-0 bg-white shadow-lg rounded-lg p-4 w-64 z-50">
-          {/* 🔹 Cross button */}
           <button
             onClick={() => setShowFilter(false)}
             className="absolute top-2 right-2 text-gray-500 hover:text-black"
@@ -52,6 +55,19 @@ const Projectfilter = ({ setDateFilter }) => {
             onChange={(e) => setEndDate(e.target.value)}
             className="border rounded w-full mb-3 px-2 py-1"
           />
+
+          {/* 🔹 Status filter */}
+          <label className="block mb-2 text-sm font-medium">Status:</label>
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className="border rounded w-full mb-3 px-2 py-1"
+          >
+            <option value="">All</option>
+            <option value="in progress">In Progress</option>
+            <option value="ongoing">Ongoing</option>
+            <option value="complete">Complete</option>
+          </select>
 
           <div className="flex justify-between">
             <button

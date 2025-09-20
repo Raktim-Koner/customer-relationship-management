@@ -4,7 +4,7 @@ import Tablerow from "../Universal-Components/Tablerow";
 const API_URL = "https://api.jsonbin.io/v3/b/688f8e46f7e7a370d1f2ec3c";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
-const Projecttable = ({ refreshFlag, dateFilter, searchTerm }) => {  // 🔹 added searchTerm
+const Projecttable = ({ refreshFlag, dateFilter, searchTerm, statusFilter }) => {  
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -22,6 +22,14 @@ const Projecttable = ({ refreshFlag, dateFilter, searchTerm }) => {  // 🔹 add
     fetchProjects();
   }, [refreshFlag]);
 
+  const filterBySearch = (data) => {
+    if (!searchTerm) return data;
+    return data.filter((p) =>
+      p.projectId.toLowerCase().includes(searchTerm.toLowerCase().trim()) ||
+      p.projectName.toLowerCase().includes(searchTerm.toLowerCase().trim())
+    );
+  };
+
   const filterByDate = (data) => {
     if (!dateFilter.start && !dateFilter.end) return data;
 
@@ -36,17 +44,16 @@ const Projecttable = ({ refreshFlag, dateFilter, searchTerm }) => {  // 🔹 add
     });
   };
 
-  // 🔹 New: filter by search term (Project ID or Name)
-  const filterBySearch = (data) => {
-    if (!searchTerm) return data;
+  // 🔹 New: filter by status
+  const filterByStatus = (data) => {
+    if (!statusFilter) return data;
     return data.filter((p) =>
-      p.projectId.toLowerCase().includes(searchTerm.toLowerCase().trim()) ||
-      p.projectName.toLowerCase().includes(searchTerm.toLowerCase().trim())
+      p.status.toLowerCase().trim() === statusFilter.toLowerCase().trim()
     );
   };
 
-  // 🔹 Apply both filters
-  const filteredProjects = filterBySearch(filterByDate(projects));
+  // 🔹 Apply all filters
+  const filteredProjects = filterByStatus(filterBySearch(filterByDate(projects)));
 
   return (
     <div className="mt-16 border border-gray-300 border-b-0 h-64 overflow-y-auto">

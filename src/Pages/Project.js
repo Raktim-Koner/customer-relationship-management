@@ -8,8 +8,9 @@ import ProjectForm from '../Components/ProjectPage/ProjectForm';
 const Project = () => {
   const [isModelFlag, setIsModelFlag] = useState(false);
   const [refreshFlag, setRefreshFlag] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");   // 🔹 search state
   const [dateFilter, setDateFilter] = useState({ start: null, end: null });
-  const [searchTerm, setSearchTerm] = useState("");   // 🔹 new state
+  const [statusFilter, setStatusFilter] = useState(""); // 🔹 new status state
 
   const handleProjectAdded = () => {
     setRefreshFlag(!refreshFlag); 
@@ -20,9 +21,8 @@ const Project = () => {
     <div>
       <ProjectName />
       <div className='flex ml-4 mt-8'>
-        {/* 🔹 pass setter to Projectsearch */}
         <Projectsearch setSearchTerm={setSearchTerm} /> 
-        <Projectfilter setDateFilter={setDateFilter} />
+        <Projectfilter setDateFilter={setDateFilter} setStatusFilter={setStatusFilter} /> 
         <button
           className="w-32 px-4 py-2 ml-3 bg-blue-950 text-white rounded-xl font-sans font-bold"
           onClick={() => setIsModelFlag(true)}
@@ -40,8 +40,12 @@ const Project = () => {
         </div>
       )}
 
-      {/* 🔹 pass searchTerm into table */}
-      <Projecttable refreshFlag={refreshFlag} dateFilter={dateFilter} searchTerm={searchTerm} /> 
+      <Projecttable 
+        refreshFlag={refreshFlag} 
+        searchTerm={searchTerm} 
+        dateFilter={dateFilter} 
+        statusFilter={statusFilter}   // 🔹 pass status filter
+      /> 
     </div>
   );
 };
