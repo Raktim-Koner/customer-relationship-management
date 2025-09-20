@@ -4,7 +4,7 @@ import Tablerow from "../Universal-Components/Tablerow";
 const API_URL = "https://api.jsonbin.io/v3/b/688f8e46f7e7a370d1f2ec3c";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
-const Projecttable = ({ refreshFlag, dateFilter }) => {
+const Projecttable = ({ refreshFlag, dateFilter, searchTerm }) => {  // 🔹 added searchTerm
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -36,7 +36,17 @@ const Projecttable = ({ refreshFlag, dateFilter }) => {
     });
   };
 
-  const filteredProjects = filterByDate(projects);
+  // 🔹 New: filter by search term (Project ID or Name)
+  const filterBySearch = (data) => {
+    if (!searchTerm) return data;
+    return data.filter((p) =>
+      p.projectId.toLowerCase().includes(searchTerm.toLowerCase().trim()) ||
+      p.projectName.toLowerCase().includes(searchTerm.toLowerCase().trim())
+    );
+  };
+
+  // 🔹 Apply both filters
+  const filteredProjects = filterBySearch(filterByDate(projects));
 
   return (
     <div className="mt-16 border border-gray-300 border-b-0 h-64 overflow-y-auto">
