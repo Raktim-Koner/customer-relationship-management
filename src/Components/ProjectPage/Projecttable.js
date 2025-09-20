@@ -4,7 +4,7 @@ import Tablerow from "../Universal-Components/Tablerow";
 const API_URL = "https://api.jsonbin.io/v3/b/688f8e46f7e7a370d1f2ec3c";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
-const Projecttable = ({ refreshFlag }) => {
+const Projecttable = ({ refreshFlag, dateFilter }) => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -20,7 +20,23 @@ const Projecttable = ({ refreshFlag }) => {
       }
     };
     fetchProjects();
-  }, [refreshFlag]); // refetch when refreshFlag toggles
+  }, [refreshFlag]);
+
+  const filterByDate = (data) => {
+    if (!dateFilter.start && !dateFilter.end) return data;
+
+    const start = dateFilter.start ? new Date(dateFilter.start) : null;
+    const end = dateFilter.end ? new Date(dateFilter.end) : null;
+
+    return data.filter((p) => {
+      const dueDate = new Date(p.dueDate);
+      if (start && dueDate < start) return false;
+      if (end && dueDate > end) return false;
+      return true;
+    });
+  };
+
+  const filteredProjects = filterByDate(projects);
 
   return (
     <div className="mt-16 border border-gray-300 border-b-0 h-64 overflow-y-auto">
@@ -37,14 +53,14 @@ const Projecttable = ({ refreshFlag }) => {
           </tr>
         </thead>
         <tbody>
-          {projects.length === 0 ? (
+          {filteredProjects.length === 0 ? (
             <tr>
               <td colSpan="7" className=" text-gray-500">
                 <Tablerow/>
               </td>
             </tr>
           ) : (
-            projects.map((project, index) => (
+            filteredProjects.map((project, index) => (
               <tr
                 key={index}
                 className={index % 2 === 0 ? "bg-cyan-50" : "bg-cyan-100"}
