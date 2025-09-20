@@ -8,6 +8,7 @@ import ProjectForm from '../Components/ProjectPage/ProjectForm';
 const Project = () => {
   const [isModelFlag, setIsModelFlag] = useState(false);
   const [refreshFlag, setRefreshFlag] = useState(false);
+  const [dateFilter, setDateFilter] = useState({ start: null, end: null }); //filter 
 
   const handleProjectAdded = () => {
     setRefreshFlag(!refreshFlag); // toggle refresh
@@ -19,7 +20,7 @@ const Project = () => {
       <ProjectName />
       <div className='flex ml-4 mt-8'>
         <Projectsearch />
-        <Projectfilter />
+        <Projectfilter setDateFilter={setDateFilter} /> {/*filter*/}
         <button
           className="w-32 px-4 py-2 ml-3 bg-blue-950 text-white rounded-xl font-sans font-bold"
           onClick={() => setIsModelFlag(true)}
@@ -37,7 +38,7 @@ const Project = () => {
         </div>
       )}
 
-      <Projecttable refreshFlag={refreshFlag} />
+      <Projecttable refreshFlag={refreshFlag} dateFilter={dateFilter} /> {/*filter*/}
     </div>
   );
 };
