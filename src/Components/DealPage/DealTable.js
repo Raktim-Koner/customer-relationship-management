@@ -4,7 +4,7 @@ import Tablerow from "../Universal-Components/Tablerow";
 const API_URL = "https://api.jsonbin.io/v3/b/689c11e3ae596e708fc8c887";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
-const DealTable = ({ refreshFlag }) => {
+const DealTable = ({ refreshFlag, searchTerm, dateFilter, statusFilter }) => {
   const [deals, setDeals] = useState([]);
 
   const fetchDeals = async () => {
@@ -21,24 +21,41 @@ const DealTable = ({ refreshFlag }) => {
     fetchDeals();
   }, [refreshFlag]);
 
-  const handleRemove = async (index) => {
-    try {
-      const updatedDeals = deals.filter((_, i) => i !== index);
-
-      await fetch(API_URL, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Master-Key": API_KEY,
-        },
-        body: JSON.stringify(updatedDeals),
-      });
-
-      setDeals(updatedDeals);
-    } catch (err) {
-      console.error("Error removing deal:", err);
-    }
+  // 🔍 Search filter
+  const filterBySearch = (data) => {
+    if (!searchTerm) return data;
+    return data.filter(
+      (d) =>
+        d.dealId.toLowerCase().includes(searchTerm.toLowerCase().trim()) ||
+        d.dealName.toLowerCase().includes(searchTerm.toLowerCase().trim())
+    );
   };
+
+  // 📅 Date filter
+  const filterByDate = (data) => {
+    if (!dateFilter.start && !dateFilter.end) return data;
+
+    const start = dateFilter.start ? new Date(dateFilter.start) : null;
+    const end = dateFilter.end ? new Date(dateFilter.end) : null;
+
+    return data.filter((d) => {
+      const closeDate = new Date(d.closeDate);
+      if (start && closeDate < start) return false;
+      if (end && closeDate > end) return false;
+      return true;
+    });
+  };
+
+  // 📌 Status filter
+  const filterByStatus = (data) => {
+    if (!statusFilter) return data;
+    return data.filter(
+      (d) => d.status.toLowerCase().trim() === statusFilter.toLowerCase().trim()
+    );
+  };
+
+  // ✅ Apply all filters
+  const filteredDeals = filterByStatus(filterBySearch(filterByDate(deals)));
 
   return (
     <div className="mt-16 border border-gray-300 border-b-0 h-64 overflow-y-auto">
@@ -55,14 +72,14 @@ const DealTable = ({ refreshFlag }) => {
           </tr>
         </thead>
         <tbody>
-          {deals.length === 0 ? (
+          {filteredDeals.length === 0 ? (
             <tr>
               <td colSpan="7" className="text-gray-500">
-                <Tablerow/>
+                <Tablerow />
               </td>
             </tr>
           ) : (
-            deals.map((deal, index) => (
+            filteredDeals.map((deal, index) => (
               <tr key={index} className={index % 2 === 0 ? "bg-cyan-50" : "bg-cyan-100"}>
                 <td className="px-4 py-2 border border-black border-l-0">{deal.dealId}</td>
                 <td className="px-4 py-2 border border-black">{deal.dealName}</td>

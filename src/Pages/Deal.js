@@ -9,6 +9,11 @@ const Deal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [refreshFlag, setRefreshFlag] = useState(false);
 
+  // 🔹 New states for search & filter
+  const [searchTerm, setSearchTerm] = useState("");
+  const [dateFilter, setDateFilter] = useState({ start: null, end: null });
+  const [statusFilter, setStatusFilter] = useState("");
+
   const handleAddDeal = () => {
     setIsModalOpen(false);
     setRefreshFlag(!refreshFlag); // refresh table after adding
@@ -22,8 +27,12 @@ const Deal = () => {
     <div>
       <DealName />
       <div className="flex ml-4 mt-8">
-        <DealSearch />
-        <DealFilter />
+        {/* Pass setSearchTerm to DealSearch */}
+        <DealSearch setSearchTerm={setSearchTerm} /> 
+
+        {/* Pass setDateFilter & setStatusFilter to DealFilter */}
+        <DealFilter setDateFilter={setDateFilter} setStatusFilter={setStatusFilter} /> 
+
         <button
           className="w-32 px-4 py-2 ml-3 bg-blue-950 text-white rounded-xl font-sans font-bold hover:bg-blue-900"
           onClick={() => setIsModalOpen(true)}
@@ -38,7 +47,13 @@ const Deal = () => {
         </div>
       )}
 
-      <DealTable refreshFlag={refreshFlag} />
+      {/* 🔹 Pass filters & searchTerm into DealTable */}
+      <DealTable 
+        refreshFlag={refreshFlag} 
+        searchTerm={searchTerm} 
+        dateFilter={dateFilter} 
+        statusFilter={statusFilter} 
+      />
     </div>
   );
 };
