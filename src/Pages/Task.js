@@ -8,17 +8,20 @@ import TaskForm from '../Components/TaskPage/TaskForm';
 const Task = () => {
   const [isModelFlag, setIsModelFlag] = useState(false);
   const [refreshFlag, setRefreshFlag] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [dateFilter, setDateFilter] = useState({ start: null, end: null });
+  const [statusFilter, setStatusFilter] = useState("");
 
   const handleTaskAdded = () => {
-    setRefreshFlag(!refreshFlag); // toggle to refresh TaskTable
+    setRefreshFlag(!refreshFlag); 
   };
 
   return (
     <div>
       <TaskName />
       <div className="flex ml-4 mt-8">
-        <TaskSearch />
-        <TaskFilter />
+        <TaskSearch setSearchTerm={setSearchTerm} />
+        <TaskFilter setDateFilter={setDateFilter} setStatusFilter={setStatusFilter} />
         <button
           className="w-32 px-4 py-2 ml-3 bg-blue-950 text-white rounded-xl font-sans font-bold"
           onClick={() => setIsModelFlag(true)}
@@ -36,7 +39,12 @@ const Task = () => {
         </div>
       )}
 
-      <TaskTable refreshFlag={refreshFlag} />
+      <TaskTable 
+        refreshFlag={refreshFlag} 
+        searchTerm={searchTerm}
+        dateFilter={dateFilter}
+        statusFilter={statusFilter}
+      />
     </div>
   );
 };

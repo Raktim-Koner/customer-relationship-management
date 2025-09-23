@@ -4,7 +4,7 @@ import Tablerow from "../Universal-Components/Tablerow";
 const API_URL = "https://api.jsonbin.io/v3/b/689054c6ae596e708fc11988";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
-const TaskTable = ({ refreshFlag }) => {
+const TaskTable = ({ refreshFlag, searchTerm, dateFilter, statusFilter }) => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,6 @@ const TaskTable = ({ refreshFlag }) => {
           headers: { "X-Master-Key": API_KEY }
         });
         const json = await res.json();
-        console.log("Fetched tasks:", json);
         setTasks(json.record || []);
       } catch (err) {
         console.error("Error fetching tasks:", err);
@@ -22,7 +21,43 @@ const TaskTable = ({ refreshFlag }) => {
     };
 
     fetchTasks();
-  }, [refreshFlag]); // refetch when refreshFlag changes
+  }, [refreshFlag]);
+
+  // 🔍 Search filter
+  const filterBySearch = (data) => {
+    if (!searchTerm) return data;
+    return data.filter(
+      (t) =>
+        t.taskId.toLowerCase().includes(searchTerm.toLowerCase().trim()) ||
+        t.taskName.toLowerCase().includes(searchTerm.toLowerCase().trim())
+    );
+  };
+
+  // 📅 Date filter
+  const filterByDate = (data) => {
+    if (!dateFilter.start && !dateFilter.end) return data;
+
+    const start = dateFilter.start ? new Date(dateFilter.start) : null;
+    const end = dateFilter.end ? new Date(dateFilter.end) : null;
+
+    return data.filter((t) => {
+      const dueDate = new Date(t.dueDate);
+      if (start && dueDate < start) return false;
+      if (end && dueDate > end) return false;
+      return true;
+    });
+  };
+
+  // ✅ Status filter
+  const filterByStatus = (data) => {
+    if (!statusFilter) return data;
+    return data.filter(
+      (t) => t.status.toLowerCase().trim() === statusFilter.toLowerCase().trim()
+    );
+  };
+
+  // Apply all filters
+  const filteredTasks = filterByStatus(filterBySearch(filterByDate(tasks)));
 
   return (
     <div className="mt-16 border border-gray-300 border-b-0 h-64 overflow-y-auto">
@@ -38,14 +73,14 @@ const TaskTable = ({ refreshFlag }) => {
           </tr>
         </thead>
         <tbody>
-          {tasks.length === 0 ? (
+          {filteredTasks.length === 0 ? (
             <tr>
               <td colSpan="6" className=" text-gray-500">
-                <Tablerow/>
+                <Tablerow />
               </td>
             </tr>
           ) : (
-            tasks.map((task, index) => (
+            filteredTasks.map((task, index) => (
               <tr
                 key={index}
                 className={index % 2 === 0 ? "bg-cyan-50" : "bg-cyan-100"}
