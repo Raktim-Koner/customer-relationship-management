@@ -5,7 +5,7 @@ import Tablerow from "../Universal-Components/Tablerow";
 const API_URL = "https://api.jsonbin.io/v3/b/6890af3df7e7a370d1f38587";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
-const ReportTable = ({ refreshFlag }) => {
+const ReportTable = ({ refreshFlag, searchTerm }) => {
   const [reports, setReports] = useState([]);
 
   const fetchReports = async () => {
@@ -32,7 +32,7 @@ const ReportTable = ({ refreshFlag }) => {
           "Content-Type": "application/json",
           "X-Master-Key": API_KEY,
         },
-        body: JSON.stringify(updatedReports),
+        body: JSON.stringify({ record: updatedReports }), // ✅ keep inside { record: [] }
       });
 
       setReports(updatedReports);
@@ -40,6 +40,15 @@ const ReportTable = ({ refreshFlag }) => {
       console.error("Error removing report:", err);
     }
   };
+
+  // ✅ Apply search filter
+  const filteredReports = reports.filter((r) =>
+    searchTerm
+      ? r.slNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        r.projectId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        r.projectName.toLowerCase().includes(searchTerm.toLowerCase())
+      : true
+  );
 
   return (
     <div className="mt-16 border border-gray-300 border-b-0 h-64 overflow-y-auto">
@@ -64,17 +73,14 @@ const ReportTable = ({ refreshFlag }) => {
           </tr>
         </thead>
         <tbody>
-          {reports.length === 0 ? (
+          {filteredReports.length === 0 ? (
             <tr>
-              <td
-                colSpan="5"
-                className=" text-gray-500"
-              >
-                <Tablerow/>
+              <td colSpan="5" className="text-gray-500">
+                <Tablerow />
               </td>
             </tr>
           ) : (
-            reports.map((report, index) => (
+            filteredReports.map((report, index) => (
               <tr
                 key={index}
                 className={index % 2 === 0 ? "bg-cyan-50" : "bg-cyan-100"}
@@ -85,7 +91,9 @@ const ReportTable = ({ refreshFlag }) => {
                 <td className="px-4 py-2 border border-black">{report.projectId}</td>
                 <td className="px-4 py-2 border border-black">{report.projectName}</td>
                 <td className="px-4 py-2 border border-black">
-                  <Link to="/report/analytics">{report.viewDownload || "View"}</Link>
+                  <Link to="/report/analytics">
+                    {report.viewDownload || "View"}
+                  </Link>
                 </td>
                 <td
                   className="px-4 py-2 border border-black border-r-0 text-red-600 cursor-pointer hover:underline"
