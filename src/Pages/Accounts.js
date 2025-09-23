@@ -8,6 +8,8 @@ import AccountsForm from '../Components/AccountsPage/AccountsForm';
 const Accounts = () => {
   const [isModelFlag, setIsModelFlag] = useState(false);
   const [refreshFlag, setRefreshFlag] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
 
   const handleAccountAdded = () => {
     setRefreshFlag(!refreshFlag); // refresh table
@@ -18,8 +20,8 @@ const Accounts = () => {
     <div>
       <AccountsName />
       <div className='flex ml-4 mt-8'>
-        <AccountsSearch />
-        <AccountsFilter />
+        <AccountsSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+        <AccountsFilter statusFilter={statusFilter} setStatusFilter={setStatusFilter}/>
         <button
           className="w-32 px-4 py-2 ml-3 bg-blue-950 text-white rounded-xl font-sans font-bold"
           onClick={() => setIsModelFlag(true)}
@@ -37,7 +39,10 @@ const Accounts = () => {
         </div>
       )}
 
-      <AccountsTable refreshFlag={refreshFlag} />
+      <AccountsTable 
+        refreshFlag={refreshFlag} 
+        searchTerm={searchTerm}
+        statusFilter={statusFilter}/>
     </div>
   );
 };
