@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const API_URL = "https://api.jsonbin.io/v3/b/6890af3df7e7a370d1f38587";
+const API_URL = "https://api.jsonbin.io/v3/b/695fc4e8ae596e708fcdc7e3";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
 const ReportForm = ({ onClose, onSuccess }) => {
@@ -11,76 +11,86 @@ const ReportForm = ({ onClose, onSuccess }) => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const res = await fetch(API_URL, { headers: { "X-Master-Key": API_KEY } });
+      // 1️⃣ READ OLD DATA (CORRECT PATH)
+      const res = await fetch(API_URL, {
+        headers: { "X-Master-Key": API_KEY },
+      });
       const data = await res.json();
+
+      const oldReports = Array.isArray(data?.record?.record)
+        ? data.record.record
+        : [];
+
+      // 2️⃣ ATTACH OLD + NEW (JUST LIKE DEAL FORM)
       const updatedReports = [
-        ...data.record,
-        { ...formData, viewDownload: "View", remove: "Remove" },
+        ...oldReports,
+        {
+          ...formData,
+          viewDownload: "View",
+          remove: "Remove",
+        },
       ];
 
+      // 3️⃣ SEND TOTAL DATA BACK
       await fetch(API_URL, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           "X-Master-Key": API_KEY,
         },
-        body: JSON.stringify(updatedReports),
+        body: JSON.stringify({
+          record: updatedReports,
+        }),
       });
 
-  
-      onSuccess(); // trigger refresh + close modal
+      onSuccess();
+      onClose();
     } catch (err) {
       console.error("Error adding report:", err);
-      alert("❌ Failed to add report");
     }
   };
 
   return (
-    <div className="relative bg-white border border-gray-300 rounded-xl p-6 w-[40rem] mx-auto mt-20 shadow-lg font-sans">
-      <button
-        onClick={onClose}
-        className="absolute top-4 right-4 text-gray-600 hover:text-black text-xl font-bold"
-      >
-        ×
-      </button>
+    <div className="relative bg-white border rounded-xl p-6 w-[40rem] mx-auto mt-20">
+      <button onClick={onClose} className="absolute top-4 right-4">×</button>
 
-      <h2 className="text-2xl font-bold mb-4 text-blue-900">Add New Report</h2>
+      <h2 className="text-2xl font-bold mb-4">Add New Report</h2>
+
       <form onSubmit={handleSubmit}>
         {["slNo", "projectId", "projectName"].map((field) => (
-          <div className="mb-4" key={field}>
-            <label className="block text-gray-700 font-semibold capitalize mb-1">
-              {field.replace(/([A-Z])/g, " $1")}
+          <div key={field} className="mb-4">
+            <label className="block font-semibold mb-1">
+              {field}
             </label>
             <input
-              type="text"
               name={field}
               value={formData[field]}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className="w-full border px-3 py-2 rounded"
             />
           </div>
         ))}
 
-        <div className="flex justify-end mt-6">
-          <button
-            type="button"
-            onClick={onClose}
-            className="px-4 py-2 mr-3 border rounded-md"
-          >
+        <div className="flex justify-end">
+          <button type="button" onClick={onClose} className="mr-3">
             Cancel
           </button>
           <button
             type="submit"
-            className="px-6 py-2 bg-blue-900 text-white rounded-md font-semibold"
+            className="bg-blue-900 text-white px-4 py-2 rounded"
           >
-            Add Report
+            Add
           </button>
         </div>
       </form>

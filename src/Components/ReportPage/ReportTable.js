@@ -2,19 +2,25 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Tablerow from "../Universal-Components/Tablerow";
 
-const API_URL = "https://api.jsonbin.io/v3/b/6890af3df7e7a370d1f38587";
+const API_URL = "https://api.jsonbin.io/v3/b/695fc4e8ae596e708fcdc7e3";
 const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
-const ReportTable = ({ refreshFlag, searchTerm }) => {
+const ReportTable = ({ refreshFlag }) => {
   const [reports, setReports] = useState([]);
 
   const fetchReports = async () => {
     try {
-      const res = await fetch(API_URL, { headers: { "X-Master-Key": API_KEY } });
+      const res = await fetch(API_URL, {
+        headers: { "X-Master-Key": API_KEY },
+      });
       const data = await res.json();
-      setReports(data.record || []);
+
+      // JSONBin v3 nesting
+      const records = data?.record?.record;
+      setReports(Array.isArray(records) ? records : []);
     } catch (err) {
-      console.error("Error fetching reports:", err);
+      console.error("Fetch error:", err);
+      setReports([]);
     }
   };
 
@@ -23,32 +29,21 @@ const ReportTable = ({ refreshFlag, searchTerm }) => {
   }, [refreshFlag]);
 
   const handleRemove = async (index) => {
-    try {
-      const updatedReports = reports.filter((_, i) => i !== index);
+    const updatedReports = reports.filter((_, i) => i !== index);
 
-      await fetch(API_URL, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Master-Key": API_KEY,
-        },
-        body: JSON.stringify({ record: updatedReports }), // ✅ keep inside { record: [] }
-      });
+    await fetch(API_URL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": API_KEY,
+      },
+      body: JSON.stringify({
+        record: updatedReports,
+      }),
+    });
 
-      setReports(updatedReports);
-    } catch (err) {
-      console.error("Error removing report:", err);
-    }
+    setReports(updatedReports);
   };
-
-  // ✅ Apply search filter
-  const filteredReports = reports.filter((r) =>
-    searchTerm
-      ? r.slNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        r.projectId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        r.projectName.toLowerCase().includes(searchTerm.toLowerCase())
-      : true
-  );
 
   return (
     <div className="mt-16 border border-gray-300 border-b-0 h-64 overflow-y-auto">
@@ -56,7 +51,7 @@ const ReportTable = ({ refreshFlag, searchTerm }) => {
         <thead className="bg-cyan-100 sticky top-0 z-10">
           <tr>
             <th className="px-4 py-3 text-blue-950 font-bold border border-black border-l-0">
-              SL NO.
+              SL NO
             </th>
             <th className="px-4 py-3 text-blue-950 font-bold border border-black">
               Project ID
@@ -65,41 +60,49 @@ const ReportTable = ({ refreshFlag, searchTerm }) => {
               Project Name
             </th>
             <th className="px-4 py-3 text-blue-950 font-bold border border-black">
-              View/Download
+              View / Download
             </th>
             <th className="px-4 py-3 text-blue-950 font-bold border border-black border-r-0">
               Remove
             </th>
           </tr>
         </thead>
+
         <tbody>
-          {filteredReports.length === 0 ? (
+          {reports.length === 0 ? (
             <tr>
-              <td colSpan="5" className="text-gray-500">
+              <td colSpan="5" className="text-gray-500 py-4">
                 <Tablerow />
               </td>
             </tr>
           ) : (
-            filteredReports.map((report, index) => (
+            reports.map((report, index) => (
               <tr
-                key={index}
+                key={report.projectId}
                 className={index % 2 === 0 ? "bg-cyan-50" : "bg-cyan-100"}
               >
                 <td className="px-4 py-2 border border-black border-l-0">
                   {report.slNo}
                 </td>
-                <td className="px-4 py-2 border border-black">{report.projectId}</td>
-                <td className="px-4 py-2 border border-black">{report.projectName}</td>
                 <td className="px-4 py-2 border border-black">
-                  <Link to="/report/analytics">
-                    {report.viewDownload || "View"}
+                  {report.projectId}
+                </td>
+                <td className="px-4 py-2 border border-black">
+                  {report.projectName}
+                </td>
+                <td className="px-4 py-2 border border-black">
+                  <Link
+                    to="/report/analytics"
+                    className="text-blue-600 underline"
+                  >
+                    View
                   </Link>
                 </td>
                 <td
                   className="px-4 py-2 border border-black border-r-0 text-red-600 cursor-pointer hover:underline"
                   onClick={() => handleRemove(index)}
                 >
-                  {report.remove || "Remove"}
+                  Remove
                 </td>
               </tr>
             ))
