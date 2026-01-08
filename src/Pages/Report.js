@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import ReportName from "../Components/ReportPage/ReportName";
-import ReportSearch from "../Components/ReportPage/ReportSearch";
-import ReportTable from "../Components/ReportPage/ReportTable";
-import ReportForm from "../Components/ReportPage/ReportFrom";
+import React, { useState } from 'react';
+import ReportName from '../Components/ReportPage/ReportName';
+import ReportSearch from '../Components/ReportPage/ReportSearch';
+import ReportFilter from '../Components/ReportPage/ReportFilter';
+import ReportTable from '../Components/ReportPage/ReportTable';
+import ReportForm from '../Components/ReportPage/ReportFrom';
 
 const Report = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [refreshFlag, setRefreshFlag] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(""); // ✅ search state
+
 
   // called after form submits
   const handleDataAdded = () => {
@@ -19,11 +20,11 @@ const Report = () => {
     <div>
       <ReportName />
       <div className="flex ml-4 mt-8">
-        {/* ✅ Pass setSearchTerm down */}
-        <ReportSearch setSearchTerm={setSearchTerm} />
+        <ReportSearch/>
+        <ReportFilter/>
         
         <button
-          className="w-32 px-4 ml-[34.5rem]  mr-2 bg-blue-950 text-white rounded-xl font-sans font-bold"
+         className="w-32 px-4 py-2 ml-3 bg-blue-950 text-white rounded-xl font-sans font-bold"
           onClick={() => setIsModalOpen(true)}
         >
           + New Entry
@@ -32,15 +33,14 @@ const Report = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-40 z-50">
-          <ReportForm
-            onClose={() => setIsModalOpen(false)}
-            onSuccess={handleDataAdded}
-          />
+           <ReportForm 
+            onClose={() => setIsModalOpen(false)} 
+            onSuccess={handleDataAdded} 
+          /> 
         </div>
       )}
 
-      {/* ✅ Pass searchTerm into table */}
-      <ReportTable refreshFlag={refreshFlag} searchTerm={searchTerm} />
+      <ReportTable refreshFlag={refreshFlag} />
     </div>
   );
 };

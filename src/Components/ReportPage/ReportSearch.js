@@ -1,6 +1,6 @@
 import React from 'react'
 import Searchicon from "../../Assets/Searchicon.png"
-const ReportSearch = ({setSearchTerm}) => {
+const ReportSearch = () => {
   return (
     <div className="flex items-center w-[30rem] border border-black rounded-full bg-[#deeded] px-4 py-2 font-sans">
       <span className="text-gray-700 mr-2">
@@ -11,11 +11,9 @@ const ReportSearch = ({setSearchTerm}) => {
         type="text"
         placeholder="Search By Project ID or Name"
         className="outline-none bg-transparent placeholder-gray-500 w-[26rem]"
-        onChange={(e) => setSearchTerm(e.target.value)}
-
       />
     </div>
-  );
-};
+  )
+}
 
 export default ReportSearch;
