@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 import InnerContainer from './InnerContainer'
-import { Outlet } from 'react-router-dom'
+// import { Outlet } from 'react-router-dom'
 
 const MainContainer = () => {
   return (
