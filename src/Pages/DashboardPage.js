@@ -1,9 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-=======
-// import Navbar from "../Components/Universal-Components/Navbar";
-// import MainContainer from "../Components/Universal-Components/MainContainer";
->>>>>>> 30b252390403a1c486b26445a0715a96950a137a
 import LineGraph from "../Components/DashboardPage/LineGraph";
 import BarGraph from "../Components/DashboardPage/BarGraph";
 import PieChart from "../Components/DashboardPage/PieChart";
