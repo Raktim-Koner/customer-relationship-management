@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { API_URL, API_KEY } from "../../Api.js";
 import { useNavigate } from "react-router-dom";
 
 const SignUpRightModel = () => {
@@ -12,43 +11,39 @@ const SignUpRightModel = () => {
 
   const handleSignUp = async () => {
     try {
-      const response = await fetch(API_URL, {
-        method: "GET",
-        headers: {
-          "X-Master-Key": API_KEY,
-        },
-      });
+      // 🔥 Get existing users from backend
+      const res = await fetch("http://localhost:5000/users");
+      const users = await res.json();
 
-      const data = await response.json();
-      const users = data.record || [];
-
-      // ✅ Check if email already exists (case-insensitive)
+      // 🔥 Check if email already exists
       const userExists = users.some(
         (user) => user.gmail.toLowerCase() === form.gmail.toLowerCase()
       );
 
       if (userExists) {
         alert("Account already exists!");
-        return; // ❌ Stop signup if email exists
+        return;
       }
 
-      // Add new user if not exist
-      const newUsers = [...users, form];
-
-      await fetch(API_URL, {
-        method: "PUT",
+      // 🔥 Send new user to backend
+      const response = await fetch("http://localhost:5000/signup", {
+        method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "X-Master-Key": API_KEY,
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(newUsers),
+        body: JSON.stringify(form)
       });
 
-      // Save user in localStorage (to show in UserIcon later)
-      localStorage.setItem("user", JSON.stringify(form));
+      const data = await response.json();
 
-      alert("Account Created Successfully!");
-      navigate("/dashboard"); // 🚀 Redirect to dashboard
+      if (response.ok) {
+        localStorage.setItem("user", JSON.stringify(form));
+        alert("Account Created Successfully!");
+        navigate("/dashboard");
+      } else {
+        alert(data.error || "Signup failed");
+      }
+
     } catch (error) {
       console.error(error);
       alert("Error creating account");
@@ -64,20 +59,25 @@ const SignUpRightModel = () => {
 
       <input
         name="name"
+        value={form.name}
         onChange={handleChange}
         type="text"
         placeholder="Name"
         className="w-full mt-5 border px-3 py-2 rounded-md"
       />
+
       <input
         name="gmail"
+        value={form.gmail}
         onChange={handleChange}
         type="email"
         placeholder="Email"
         className="w-full mt-5 border px-3 py-2 rounded-md"
       />
+
       <input
         name="password"
+        value={form.password}
         onChange={handleChange}
         type="password"
         placeholder="Password"
