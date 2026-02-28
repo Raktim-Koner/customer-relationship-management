@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-// import React, { Children } from "react";
->>>>>>> 30b252390403a1c486b26445a0715a96950a137a
 import {createBrowserRouter,RouterProvider} from 'react-router-dom';
 import DashboardPage from "./Pages/DashboardPage";
 import './App.css';
@@ -13,11 +9,6 @@ import Task from "./Pages/Task"
 import Accounts from "./Pages/Accounts"
 import Report from "./Pages/Report"
 import Service from "./Pages/Service"
-<<<<<<< HEAD
-=======
-// import InnerContainer from "./Components/Universal-Components/InnerContainer";
-// import Sidebar from "./Components/Universal-Components/Sidebar";
->>>>>>> 30b252390403a1c486b26445a0715a96950a137a
 import Analytics from "./Subpages/Analytics";
 import Chat from "./Subpages/Chat";
 import Document from "./Subpages/Document";
