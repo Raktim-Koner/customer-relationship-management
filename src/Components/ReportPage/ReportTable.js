@@ -1,23 +1,18 @@
+// const API_URL = "https://api.jsonbin.io/v3/b/695fc4e8ae596e708fcdc7e3";
+// const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Tablerow from "../Universal-Components/Tablerow";
-
-const API_URL = "https://api.jsonbin.io/v3/b/695fc4e8ae596e708fcdc7e3";
-const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
+import { getReports, deleteReport } from "../../Api";
 
 const ReportTable = ({ refreshFlag }) => {
   const [reports, setReports] = useState([]);
 
   const fetchReports = async () => {
     try {
-      const res = await fetch(API_URL, {
-        headers: { "X-Master-Key": API_KEY },
-      });
-      const data = await res.json();
-
-      // JSONBin v3 nesting
-      const records = data?.record?.record;
-      setReports(Array.isArray(records) ? records : []);
+      const data = await getReports();
+      setReports(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error("Fetch error:", err);
       setReports([]);
@@ -28,21 +23,9 @@ const ReportTable = ({ refreshFlag }) => {
     fetchReports();
   }, [refreshFlag]);
 
-  const handleRemove = async (index) => {
-    const updatedReports = reports.filter((_, i) => i !== index);
-
-    await fetch(API_URL, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Master-Key": API_KEY,
-      },
-      body: JSON.stringify({
-        record: updatedReports,
-      }),
-    });
-
-    setReports(updatedReports);
+  const handleRemove = async (id) => {
+    await deleteReport(id);
+    fetchReports(); // refresh table
   };
 
   return (
@@ -78,7 +61,7 @@ const ReportTable = ({ refreshFlag }) => {
           ) : (
             reports.map((report, index) => (
               <tr
-                key={report.projectId}
+                key={report.id}
                 className={index % 2 === 0 ? "bg-cyan-50" : "bg-cyan-100"}
               >
                 <td className="px-4 py-2 border border-black border-l-0">
@@ -100,7 +83,7 @@ const ReportTable = ({ refreshFlag }) => {
                 </td>
                 <td
                   className="px-4 py-2 border border-black border-r-0 text-red-600 cursor-pointer hover:underline"
-                  onClick={() => handleRemove(index)}
+                  onClick={() => handleRemove(report.id)}
                 >
                   Remove
                 </td>

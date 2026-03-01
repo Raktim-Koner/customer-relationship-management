@@ -3,6 +3,10 @@
 
 const BASE_URL = "http://localhost:5000";
 
+/* =================================
+   CUSTOMER APIs
+================================= */
+
 // Add Customer
 export const addCustomer = async (data) => {
   const response = await fetch(`${BASE_URL}/customers`, {
@@ -25,6 +29,39 @@ export const getCustomers = async () => {
 // Delete Customer
 export const deleteCustomer = async (id) => {
   const response = await fetch(`${BASE_URL}/customers/${id}`, {
+    method: "DELETE"
+  });
+
+  return response.json();
+};
+
+
+/* =================================
+   REPORT APIs
+================================= */
+
+// Get Reports
+export const getReports = async () => {
+  const response = await fetch(`${BASE_URL}/reports`);
+  return response.json();
+};
+
+// Add Report
+export const addReport = async (data) => {
+  const response = await fetch(`${BASE_URL}/reports`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  return response.json();
+};
+
+// Delete Report
+export const deleteReport = async (id) => {
+  const response = await fetch(`${BASE_URL}/reports/${id}`, {
     method: "DELETE"
   });
 

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+// const API_URL = "https://api.jsonbin.io/v3/b/695fc4e8ae596e708fcdc7e3";
+// const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
-const API_URL = "https://api.jsonbin.io/v3/b/695fc4e8ae596e708fcdc7e3";
-const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
+
+import React, { useState } from "react";
+import { addReport } from "../../Api";
 
 const ReportForm = ({ onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
@@ -21,38 +23,7 @@ const ReportForm = ({ onClose, onSuccess }) => {
     e.preventDefault();
 
     try {
-      // 1️⃣ READ OLD DATA (CORRECT PATH)
-      const res = await fetch(API_URL, {
-        headers: { "X-Master-Key": API_KEY },
-      });
-      const data = await res.json();
-
-      const oldReports = Array.isArray(data?.record?.record)
-        ? data.record.record
-        : [];
-
-      // 2️⃣ ATTACH OLD + NEW (JUST LIKE DEAL FORM)
-      const updatedReports = [
-        ...oldReports,
-        {
-          ...formData,
-          viewDownload: "View",
-          remove: "Remove",
-        },
-      ];
-
-      // 3️⃣ SEND TOTAL DATA BACK
-      await fetch(API_URL, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Master-Key": API_KEY,
-        },
-        body: JSON.stringify({
-          record: updatedReports,
-        }),
-      });
-
+      await addReport(formData);
       onSuccess();
       onClose();
     } catch (err) {
