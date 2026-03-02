@@ -35,7 +35,6 @@ export const deleteCustomer = async (id) => {
   return response.json();
 };
 
-
 /* =================================
    REPORT APIs
 ================================= */
@@ -62,6 +61,35 @@ export const addReport = async (data) => {
 // Delete Report
 export const deleteReport = async (id) => {
   const response = await fetch(`${BASE_URL}/reports/${id}`, {
+    method: "DELETE"
+  });
+
+  return response.json();
+};
+
+/* =========================
+   ACCOUNT APIs
+========================= */
+
+export const getAccounts = async () => {
+  const response = await fetch(`${BASE_URL}/accounts`);
+  return response.json();
+};
+
+export const addAccount = async (data) => {
+  const response = await fetch(`${BASE_URL}/accounts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  return response.json();
+};
+
+export const deleteAccount = async (id) => {
+  const response = await fetch(`${BASE_URL}/accounts/${id}`, {
     method: "DELETE"
   });
 
