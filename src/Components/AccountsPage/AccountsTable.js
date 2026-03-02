@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from "react";
 import Tablerow from "../Universal-Components/Tablerow";
+import { getAccounts } from "../../Api"; // adjust path
 
-const API_URL = "https://api.jsonbin.io/v3/b/6890a96eae596e708fc14add";
-const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
+// const API_URL = "https://api.jsonbin.io/v3/b/6890a96eae596e708fc14add";
+// const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
 const AccountsTable = ({ refreshFlag, searchTerm, statusFilter }) => {
   const [accounts, setAccounts] = useState([]);
 
+  // useEffect(() => {
+  //   const fetchAccounts = async () => {
+  //     try {
+  //       const res = await fetch(API_URL, {
+  //         headers: { "X-Master-Key": API_KEY },
+  //       });
+  //       const json = await res.json();
+  //       setAccounts(json.record || []);
+  //     } catch (err) {
+  //       console.error("Error fetching accounts:", err);
+  //     }
+  //   };
+  //   fetchAccounts();
+  // }, [refreshFlag]);
+
   useEffect(() => {
     const fetchAccounts = async () => {
-      try {
-        const res = await fetch(API_URL, {
-          headers: { "X-Master-Key": API_KEY },
-        });
-        const json = await res.json();
-        setAccounts(json.record || []);
-      } catch (err) {
-        console.error("Error fetching accounts:", err);
-      }
+      const data = await getAccounts();
+      setAccounts(data);
     };
     fetchAccounts();
   }, [refreshFlag]);
