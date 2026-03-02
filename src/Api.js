@@ -35,6 +35,35 @@ export const deleteCustomer = async (id) => {
   return response.json();
 };
 
+/* =========================
+   DEAL APIs
+========================= */
+
+export const getDeals = async () => {
+  const response = await fetch(`${BASE_URL}/deals`);
+  return response.json();
+};
+
+export const addDeal = async (data) => {
+  const response = await fetch(`${BASE_URL}/deals`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  return response.json();
+};
+
+export const deleteDeal = async (id) => {
+  const response = await fetch(`${BASE_URL}/deals/${id}`, {
+    method: "DELETE"
+  });
+
+  return response.json();
+};
+
 /* =================================
    REPORT APIs
 ================================= */
