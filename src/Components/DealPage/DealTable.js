@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Tablerow from "../Universal-Components/Tablerow";
+import { getDeals } from "../../Api";
 
-const API_URL = "https://api.jsonbin.io/v3/b/689c11e3ae596e708fc8c887";
-const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
+// const API_URL = "https://api.jsonbin.io/v3/b/689c11e3ae596e708fc8c887";
+// const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
 const DealTable = ({ refreshFlag, searchTerm, dateFilter, statusFilter }) => {
   const [deals, setDeals] = useState([]);
 
+  // const fetchDeals = async () => {
+  //   try {
+  //     const res = await fetch(API_URL, { headers: { "X-Master-Key": API_KEY } });
+  //     const data = await res.json();
+  //     setDeals(data.record || []);
+  //   } catch (err) {
+  //     console.error("Error fetching deals:", err);
+  //   }
+  // };
+
   const fetchDeals = async () => {
     try {
-      const res = await fetch(API_URL, { headers: { "X-Master-Key": API_KEY } });
-      const data = await res.json();
-      setDeals(data.record || []);
+      const data = await getDeals();
+      setDeals(data);
     } catch (err) {
       console.error("Error fetching deals:", err);
     }

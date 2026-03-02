@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { addDeal } from "../../Api";
 
-const API_URL = "https://api.jsonbin.io/v3/b/689c11e3ae596e708fc8c887";
-const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
+// const API_URL = "https://api.jsonbin.io/v3/b/689c11e3ae596e708fc8c887";
+// const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
 const DealForm = ({ onSubmitSuccess, onClose }) => {
   const [formData, setFormData] = useState({
@@ -18,27 +19,38 @@ const DealForm = ({ onSubmitSuccess, onClose }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     // Fetch existing deals
+  //     const res = await fetch(API_URL, { headers: { "X-Master-Key": API_KEY } });
+  //     const data = await res.json();
+  //     const deals = data.record || [];
+
+  //     // Add new deal
+  //     const updatedDeals = [...deals, formData];
+
+  //     // Save to API
+  //     await fetch(API_URL, {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "X-Master-Key": API_KEY
+  //       },
+  //       body: JSON.stringify(updatedDeals)
+  //     });
+
+  //     onSubmitSuccess();
+  //   } catch (err) {
+  //     console.error("Error adding deal:", err);
+  //   }
+  // };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Fetch existing deals
-      const res = await fetch(API_URL, { headers: { "X-Master-Key": API_KEY } });
-      const data = await res.json();
-      const deals = data.record || [];
-
-      // Add new deal
-      const updatedDeals = [...deals, formData];
-
-      // Save to API
-      await fetch(API_URL, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Master-Key": API_KEY
-        },
-        body: JSON.stringify(updatedDeals)
-      });
-
+      await addDeal(formData);
       onSubmitSuccess();
     } catch (err) {
       console.error("Error adding deal:", err);
