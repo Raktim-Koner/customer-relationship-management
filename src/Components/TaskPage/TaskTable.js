@@ -1,20 +1,34 @@
 import React, { useEffect, useState } from "react";
 import Tablerow from "../Universal-Components/Tablerow";
+import { getTasks } from "../../Api";
 
-const API_URL = "https://api.jsonbin.io/v3/b/689054c6ae596e708fc11988";
-const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
+// const API_URL = "https://api.jsonbin.io/v3/b/689054c6ae596e708fc11988";
+// const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
 const TaskTable = ({ refreshFlag, searchTerm, dateFilter, statusFilter }) => {
   const [tasks, setTasks] = useState([]);
 
+  // useEffect(() => {
+  //   const fetchTasks = async () => {
+  //     try {
+  //       const res = await fetch(API_URL, {
+  //         headers: { "X-Master-Key": API_KEY }
+  //       });
+  //       const json = await res.json();
+  //       setTasks(json.record || []);
+  //     } catch (err) {
+  //       console.error("Error fetching tasks:", err);
+  //     }
+  //   };
+
+  //   fetchTasks();
+  // }, [refreshFlag]);
+
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const res = await fetch(API_URL, {
-          headers: { "X-Master-Key": API_KEY }
-        });
-        const json = await res.json();
-        setTasks(json.record || []);
+        const data = await getTasks();
+        setTasks(data);
       } catch (err) {
         console.error("Error fetching tasks:", err);
       }
