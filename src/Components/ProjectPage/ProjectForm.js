@@ -10,6 +10,7 @@ const ProjectForm = ({ onClose, onProjectAdded }) => {
     projectId: '',
     projectName: '',
     assignTo: '',
+    amount: '',
     status: '',
     dueDate: ''
   });
@@ -70,7 +71,7 @@ const ProjectForm = ({ onClose, onProjectAdded }) => {
       </button>
       <h2 className="text-2xl font-bold mb-4 text-blue-900">Add New Project</h2>
       <form onSubmit={handleSubmit}>
-        {["dealId", "projectId", "projectName", "assignTo", "status", "dueDate"].map((field) => (
+        {["dealId", "projectId", "projectName", "assignTo","amount",  "status", "dueDate"].map((field) => (
           <div className="mb-4" key={field}>
             <label className="block text-gray-700 font-semibold capitalize mb-1">
               {field.replace(/([A-Z])/g, " $1")}
