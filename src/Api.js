@@ -64,6 +64,35 @@ export const deleteDeal = async (id) => {
   return response.json();
 };
 
+/* =========================
+   PROJECT APIs
+========================= */
+
+export const getProjects = async () => {
+  const response = await fetch(`${BASE_URL}/projects`);
+  return response.json();
+};
+
+export const addProject = async (data) => {
+  const response = await fetch(`${BASE_URL}/projects`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  return response.json();
+};
+
+export const deleteProject = async (id) => {
+  const response = await fetch(`${BASE_URL}/projects/${id}`, {
+    method: "DELETE"
+  });
+
+  return response.json();
+};
+
 /* =================================
    REPORT APIs
 ================================= */

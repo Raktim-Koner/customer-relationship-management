@@ -1,24 +1,38 @@
 import React, { useEffect, useState } from "react";
 import Tablerow from "../Universal-Components/Tablerow";
+import { getProjects } from "../../Api"; // adjust path
 
-const API_URL = "https://api.jsonbin.io/v3/b/688f8e46f7e7a370d1f2ec3c";
-const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
+// const API_URL = "https://api.jsonbin.io/v3/b/688f8e46f7e7a370d1f2ec3c";
+// const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
 const Projecttable = ({ refreshFlag, dateFilter, searchTerm, statusFilter }) => {  
   const [projects, setProjects] = useState([]);
 
+  // useEffect(() => {
+  //   const fetchProjects = async () => {
+  //     try {
+  //       const res = await fetch(API_URL, {
+  //         headers: { "X-Master-Key": API_KEY }
+  //       });
+  //       const json = await res.json();
+  //       setProjects(json.record || []);
+  //     } catch (err) {
+  //       console.error("Error fetching projects:", err);
+  //     }
+  //   };
+  //   fetchProjects();
+  // }, [refreshFlag]);
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch(API_URL, {
-          headers: { "X-Master-Key": API_KEY }
-        });
-        const json = await res.json();
-        setProjects(json.record || []);
+        const data = await getProjects();
+        setProjects(data);
       } catch (err) {
         console.error("Error fetching projects:", err);
       }
     };
+
     fetchProjects();
   }, [refreshFlag]);
 

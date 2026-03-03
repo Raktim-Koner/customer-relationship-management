@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { addProject } from "../../Api"; // adjust path
 
-const API_URL = "https://api.jsonbin.io/v3/b/688f8e46f7e7a370d1f2ec3c"; 
-const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
+// const API_URL = "https://api.jsonbin.io/v3/b/688f8e46f7e7a370d1f2ec3c"; 
+// const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
 const ProjectForm = ({ onClose, onProjectAdded }) => {
   const [formData, setFormData] = useState({
@@ -17,34 +18,45 @@ const ProjectForm = ({ onClose, onProjectAdded }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     // 1. Get old projects
+  //     const res = await fetch(API_URL, {
+  //       headers: { "X-Master-Key": API_KEY }
+  //     });
+  //     const json = await res.json();
+  //     const oldProjects = json.record || [];
+
+  //     // 2. Add new one
+  //     const updatedProjects = [...oldProjects, formData];
+
+  //     // 3. Save back to API
+  //     await fetch(API_URL, {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "X-Master-Key": API_KEY
+  //       },
+  //       body: JSON.stringify(updatedProjects)
+  //     });
+
+  //     console.log("✅ Project added successfully");
+  //     onProjectAdded(); // refresh + close
+  //   } catch (err) {
+  //     console.error("❌ Error updating projects:", err);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // 1. Get old projects
-      const res = await fetch(API_URL, {
-        headers: { "X-Master-Key": API_KEY }
-      });
-      const json = await res.json();
-      const oldProjects = json.record || [];
-
-      // 2. Add new one
-      const updatedProjects = [...oldProjects, formData];
-
-      // 3. Save back to API
-      await fetch(API_URL, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Master-Key": API_KEY
-        },
-        body: JSON.stringify(updatedProjects)
-      });
-
-      console.log("✅ Project added successfully");
-      onProjectAdded(); // refresh + close
+      await addProject(formData);
+      onProjectAdded();
     } catch (err) {
-      console.error("❌ Error updating projects:", err);
+      console.error("Error adding project:", err);
     }
   };
 
