@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { addTask } from "../../Api";  // adjust path
 
-const API_URL = "https://api.jsonbin.io/v3/b/689054c6ae596e708fc11988";
-const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
+// const API_URL = "https://api.jsonbin.io/v3/b/689054c6ae596e708fc11988";
+// const API_KEY = "$2a$10$G/HlnQAYpisDw2MDqTuJqefIWbRD3NM39enboXGgbNomTtQZiSmYG";
 
 const TaskForm = ({ onClose, onTaskAdded }) => {
   const [formData, setFormData] = useState({
@@ -17,39 +18,52 @@ const TaskForm = ({ onClose, onTaskAdded }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     // 1. Fetch old tasks from API
+  //     const res = await fetch(API_URL, {
+  //       headers: { "X-Master-Key": API_KEY }
+  //     });
+  //     const json = await res.json();
+  //     const oldTasks = json.record || [];
+
+  //     // 2. Add the new task
+  //     const updatedTasks = [...oldTasks, formData];
+
+  //     // 3. Send updated list back to API
+  //     await fetch(API_URL, {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "X-Master-Key": API_KEY
+  //       },
+  //       body: JSON.stringify(updatedTasks)
+  //     });
+
+  //     console.log("✅ Task added successfully");
+
+  //     // 4. Trigger refresh of TaskTable
+  //     onTaskAdded();
+
+  //     // 5. Close the form
+  //     onClose();
+  //   } catch (err) {
+  //     console.error("❌ Error updating tasks:", err);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // 1. Fetch old tasks from API
-      const res = await fetch(API_URL, {
-        headers: { "X-Master-Key": API_KEY }
-      });
-      const json = await res.json();
-      const oldTasks = json.record || [];
+      await addTask(formData);
 
-      // 2. Add the new task
-      const updatedTasks = [...oldTasks, formData];
-
-      // 3. Send updated list back to API
-      await fetch(API_URL, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Master-Key": API_KEY
-        },
-        body: JSON.stringify(updatedTasks)
-      });
-
-      console.log("✅ Task added successfully");
-
-      // 4. Trigger refresh of TaskTable
       onTaskAdded();
-
-      // 5. Close the form
       onClose();
     } catch (err) {
-      console.error("❌ Error updating tasks:", err);
+      console.error("Error adding task:", err);
     }
   };
 

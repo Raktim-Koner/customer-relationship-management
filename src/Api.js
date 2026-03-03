@@ -93,6 +93,35 @@ export const deleteProject = async (id) => {
   return response.json();
 };
 
+/* =========================
+   TASK APIs
+========================= */
+
+export const getTasks = async () => {
+  const response = await fetch(`${BASE_URL}/tasks`);
+  return response.json();
+};
+
+export const addTask = async (data) => {
+  const response = await fetch(`${BASE_URL}/tasks`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  return response.json();
+};
+
+export const deleteTask = async (id) => {
+  const response = await fetch(`${BASE_URL}/tasks/${id}`, {
+    method: "DELETE"
+  });
+
+  return response.json();
+};
+
 /* =================================
    REPORT APIs
 ================================= */
