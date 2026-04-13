@@ -10,28 +10,34 @@ const SignInLeftModal = () => {
   };
 
   const handleSignIn = async () => {
-    try {
-      // 🔥 Get all users from backend
-      const response = await fetch("https://crm-server-dun.vercel.app/users");
-      const users = await response.json();
+  try {
+    const response = await fetch("https://crm-server-dun.vercel.app/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        gmail: form.gmail,
+        password: form.password
+      })
+    });
 
-      // 🔥 Find matching user
-      const user = users.find(
-        (u) => u.gmail === form.gmail && u.password === form.password
-      );
+    const data = await response.json();
 
-      if (user) {
-        localStorage.setItem("user", JSON.stringify(user));
-        navigate("/dashboard");
-      } else {
-        alert("Email / password is incorrect or Create an account.");
-        navigate("/signup");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Error signing in");
+    if (response.ok) {
+      // ✅ login success
+      localStorage.setItem("user", JSON.stringify(data));
+      navigate("/dashboard");
+    } else {
+      // ❌ invalid credentials
+      alert(data.error || "Login failed");
     }
-  };
+
+  } catch (error) {
+    console.error(error);
+    alert("Error signing in");
+  }
+};
 
   return (
     <div className="p-8 bg-white w-[25rem] h-[30rem] rounded-l-2xl">
