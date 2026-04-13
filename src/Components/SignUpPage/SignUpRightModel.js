@@ -10,45 +10,30 @@ const SignUpRightModel = () => {
   };
 
   const handleSignUp = async () => {
-    try {
-      // 🔥 Get existing users from backend
-      const res = await fetch("https://crm-server-dun.vercel.app/users");
-      const users = await res.json();
+  try {
+    const response = await fetch("https://crm-server-dun.vercel.app/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(form)
+    });
 
-      // 🔥 Check if email already exists
-      const userExists = users.some(
-        (user) => user.gmail.toLowerCase() === form.gmail.toLowerCase()
-      );
+    const data = await response.json();
 
-      if (userExists) {
-        alert("Account already exists!");
-        return;
-      }
-
-      // 🔥 Send new user to backend
-      const response = await fetch("http://localhost:5000/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form)
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem("user", JSON.stringify(form));
-        alert("Account Created Successfully!");
-        navigate("/dashboard");
-      } else {
-        alert(data.error || "Signup failed");
-      }
-
-    } catch (error) {
-      console.error(error);
-      alert("Error creating account");
+    if (response.ok) {
+      localStorage.setItem("user", JSON.stringify(data));
+      alert("Account Created Successfully!");
+      navigate("/dashboard");
+    } else {
+      alert(data.error || "Signup failed");
     }
-  };
+
+  } catch (error) {
+    console.error(error);
+    alert("Error creating account");
+  }
+};
 
   return (
     <div className="p-8 bg-white w-[25rem] h-[30rem] rounded-r-2xl">
