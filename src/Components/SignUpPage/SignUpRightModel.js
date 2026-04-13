@@ -12,7 +12,7 @@ const SignUpRightModel = () => {
   const handleSignUp = async () => {
     try {
       // 🔥 Get existing users from backend
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch("https://crm-server-dun.vercel.app/users");
       const users = await res.json();
 
       // 🔥 Check if email already exists
