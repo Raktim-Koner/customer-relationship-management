@@ -10,6 +10,7 @@ const SignInLeftModal = () => {
   };
 
   const handleSignIn = async () => {
+    console.log("NEW SIGNIN CODE WORKING");
   try {
     const response = await fetch("https://crm-server-dun.vercel.app/signin", {
       method: "POST",
