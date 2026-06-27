@@ -12,7 +12,7 @@ const SignUpRightModel = () => {
   const handleSignUp = async () => {
     try {
       // 🔥 Get existing users from backend
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch("http://crm-backend-0fy2.onrender.com/users");
       const users = await res.json();
 
       // 🔥 Check if email already exists
@@ -26,7 +26,7 @@ const SignUpRightModel = () => {
       }
 
       // 🔥 Send new user to backend
-      const response = await fetch("http://localhost:5000/signup", {
+      const response = await fetch("http://crm-backend-0fy2.onrender.com/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
