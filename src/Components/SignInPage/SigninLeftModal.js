@@ -9,29 +9,32 @@ const SignInLeftModal = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSignIn = async () => {
-    try {
-      // 🔥 Get all users from backend
-      const response = await fetch("https://crm-backend-0fy2.onrender.com/signin");
-      const users = await response.json();
-
-      // 🔥 Find matching user
-      const user = users.find(
-        (u) => u.gmail === form.gmail && u.password === form.password
-      );
-
-      if (user) {
-        localStorage.setItem("user", JSON.stringify(user));
-        navigate("/dashboard");
-      } else {
-        alert("Email / password is incorrect or Create an account.");
-        navigate("/signup");
+ const handleSignIn = async () => {
+  try {
+    const response = await fetch(
+      "https://crm-backend-0fy2.onrender.com/signin",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
       }
-    } catch (error) {
-      console.error(error);
-      alert("Error signing in");
+    );
+
+    const data = await response.json();
+
+    if (response.ok) {
+      localStorage.setItem("user", JSON.stringify(data));
+      navigate("/dashboard");
+    } else {
+      alert(data.error);
     }
-  };
+  } catch (err) {
+    console.error(err);
+    alert("Error signing in");
+  }
+};
 
   return (
     <div className="p-8 bg-white w-[25rem] h-[30rem] rounded-l-2xl">
