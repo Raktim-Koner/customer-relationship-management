@@ -12,7 +12,7 @@ const SignInLeftModal = () => {
   const handleSignIn = async () => {
     try {
       // 🔥 Get all users from backend
-      const response = await fetch("https://crm-backend-0fy2.onrender.com/users");
+      const response = await fetch("https://crm-backend-0fy2.onrender.com/signin");
       const users = await response.json();
 
       // 🔥 Find matching user
